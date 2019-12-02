@@ -1,0 +1,136 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ body {
+   background-color: lightblue;
+   font-family: verdana;
+   font-size: 1em;
+   margin: 0px;
+ }
+
+ header {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   background-color: white;
+ }
+
+ #site-header {
+   border-bottom-style: solid;
+   border-bottom-width: 2px;
+   border-bottom-color: lightgray;
+ }
+
+ #page-header {
+   background-color: cornsilk;
+   margin-bottom: 1em;
+ }
+
+ header h1, h2 {
+   margin: 0px;
+   padding: 10px;
+ }
+
+ navbar {
+   margin-right: 10px;
+ }
+
+ navbar a {
+   margin: 10px;
+ }
+
+ h1, h2, h3 {
+   font-family: "Lucida Sans Unicode", "Lucida Grande";
+ }
+
+ a {
+   color: black;
+ }
+
+ main {
+   display: grid;
+   grid-template-columns: 40% 40%;
+   grid-template-rows: auto;
+   justify-content: space-around;
+   place-items: stretch;
+ }
+
+ section {
+   background-color: cornsilk;
+   border-radius: 10px;
+   padding: 5px;
+   margin: 5px 5px 20px 5px;
+   width: 100%;
+ }
+
+ section a {
+   margin-left: 0px;
+ }
+
+ section * {
+   margin: 5px;
+ }
+
+ img {
+   width: 95%;
+   height: 300px;
+   object-fit: cover;
+ }
+
+ section navbar {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-around;
+   background-color: white;
+   border-radius: 5px;
+   margin-top: 10px;
+   border: 1px solid lightgray;
+ }
+
+ section img {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+ form label {
+   display: inline-block;
+   width: 35%;
+   text-align: right;
+ }
+
+ form input {
+   width: 45%;
+ }
+
+ #crud-links {
+   border-right-style: solid;
+   border-right-color: black;
+   border-right-width: 1px;
+ }
+
+ .active_sort {
+   font-weight: bold;
+ }
+
+ #home-quote {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-indent: 2em;
+ }
