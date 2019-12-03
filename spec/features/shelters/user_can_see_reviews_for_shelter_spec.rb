@@ -19,8 +19,7 @@ describe "As a visitor" do
       review_2 = shelter.reviews.create!(
         title: "Small store front",
         rating: 2,
-        content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm",
-        image_path: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHrpmj6jvqKicV9ttIunW_Oz_PM-x5RfLsPYYCdAlw6uLf628JxA&s")
+        content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
 
       visit("/shelters/#{shelter.id}")
 
@@ -35,8 +34,6 @@ describe "As a visitor" do
         expect(page).to have_content(review_2.title)
         expect(page).to have_content(review_2.rating)
         expect(page).to have_content(review_2.content)
-        expect(page).to have_css("img[src *= 'images?q=tbn:ANd9GcRHrpmj6jvqKicV9ttIunW_Oz_PM-x5RfLsPYYCdAlw6uLf628JxA&s']")
-
       end
 
     end
