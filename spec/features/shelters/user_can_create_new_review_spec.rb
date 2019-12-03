@@ -59,8 +59,6 @@ describe "As a visitor" do
         click_link('Create New Review')
         expect(current_path).to eq("/shelters/#{@shelter.id}/reviews/new")
 
-        total_reviews = Review.all.count
-
         click_button 'Submit'
 
         expect(current_path).to eq("/shelters/#{@shelter.id}/reviews/new")
