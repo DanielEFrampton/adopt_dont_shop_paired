@@ -17,4 +17,15 @@
       Zip: <%= @shelter.zip %><br/>
     </p>
   </section>
+
+  <% @shelter.reviews.each do |review| %>
+  <section id = "review-<%= review.id %>">
+    <p>
+      Title: <%= review.title %> <br/>
+      Rating: <%= review.rating%> <br/>
+      Content: <%= review.content %> <br/>
+      Image_path: <%= review.image_path %> <br/>
+    </p>
+  </section>
+  <% end %>
 </main>
