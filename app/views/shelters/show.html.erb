@@ -4,6 +4,7 @@
     <%= link_to 'All Pets at This Shelter', "/shelters/#{@shelter.id}/pets" %>
     <%= link_to 'Edit Shelter', "/shelters/#{@shelter.id}/edit" %>
     <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete %>
+    <%= link_to 'Create New Review', "/shelters/#{@shelter.id}/reviews/new" %>
   </navbar>
 </header>
 
@@ -30,5 +31,4 @@
   </section>
   <% end %>
 
-  <a href="/shelters/<%= @shelter.id %>/reviews/new">Create New Review</a>
 </main>
