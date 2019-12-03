@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20191203043958) do
     t.integer "rating"
     t.string "content"
     t.string "image_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "shelter_id"
     t.index ["shelter_id"], name: "index_reviews_on_shelter_id"
   end
