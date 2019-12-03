@@ -4,6 +4,7 @@
     <%= link_to 'All Pets at This Shelter', "/shelters/#{@shelter.id}/pets" %>
     <%= link_to 'Edit Shelter', "/shelters/#{@shelter.id}/edit" %>
     <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete %>
+    <%= link_to 'Create New Review', "/shelters/#{@shelter.id}/reviews/new" %>
   </navbar>
 </header>
 
@@ -17,4 +18,17 @@
       Zip: <%= @shelter.zip %><br/>
     </p>
   </section>
+
+
+  <% @shelter.reviews.each do |review| %>
+  <section id = "review-<%= review.id %>">
+    <p>
+      Title: <%= review.title %> <br/>
+      Rating: <%= review.rating%> <br/>
+      Content: <%= review.content %> <br/>
+      <%= image_tag "#{review.image_path}", alt: "#{review.image_path}" %>
+    </p>
+  </section>
+  <% end %>
+
 </main>
