@@ -2,18 +2,20 @@ require 'rails_helper'
 
 describe "As a visitor" do
   describe "When I visit a shelter's show page" do
-    it "I can add a new review for this shelter via link to a form" do
-      shelter = Shelter.create!(
+    before :each do
+      @shelter = Shelter.create!(
         name: "Ridiculous Test Name",
         address: "124 Fake Ln.",
         city: "Faketown",
         state: "FK",
         zip: "55555")
 
-      visit("/shelters/#{shelter.id}")
+      visit("/shelters/#{@shelter.id}")
+    end
+    it "I can add a new review for this shelter via link to a form" do
 
       click_link('Create New Review')
-      expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
+      expect(current_path).to eq("/shelters/#{@shelter.id}/reviews/new")
 
       fill_in 'Title', with: "Great Location"
       fill_in 'Rating', with: 4
@@ -22,7 +24,7 @@ describe "As a visitor" do
 
       click_button 'Submit'
 
-      expect(current_path).to eq("/shelters/#{shelter.id}")
+      expect(current_path).to eq("/shelters/#{@shelter.id}")
 
       review = Review.last
       expect(review.title).to eq("Great Location")
@@ -34,17 +36,7 @@ describe "As a visitor" do
     end
 
     it "Without a Image, I can add a new review for this shelter via link to a form" do
-      shelter = Shelter.create!(
-        name: "Ridiculous Test Name",
-        address: "124 Fake Ln.",
-        city: "Faketown",
-        state: "FK",
-        zip: "55555")
-
-      visit("/shelters/#{shelter.id}")
-
       click_link('Create New Review')
-      expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
 
       fill_in 'Title', with: "Great Location"
       fill_in 'Rating', with: 4
@@ -52,7 +44,7 @@ describe "As a visitor" do
 
       click_button 'Submit'
 
-      expect(current_path).to eq("/shelters/#{shelter.id}")
+      expect(current_path).to eq("/shelters/#{@shelter.id}")
 
       review = Review.last
       expect(review.title).to eq("Great Location")
@@ -64,25 +56,15 @@ describe "As a visitor" do
 
     describe "When I add a new review and fail to enter a title, rating, or content" do
       it "I see a flash message giving me an error message" do
-        shelter = Shelter.create!(
-          name: "Ridiculous Test Name",
-          address: "124 Fake Ln.",
-          city: "Faketown",
-          state: "FK",
-          zip: "55555")
-
-        visit("/shelters/#{shelter.id}")
-
         click_link('Create New Review')
-        expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
+        expect(current_path).to eq("/shelters/#{@shelter.id}/reviews/new")
 
         total_reviews = Review.all.count
 
         click_button 'Submit'
 
-        expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
+        expect(current_path).to eq("/shelters/#{@shelter.id}/reviews/new")
         expect(page).to have_content("Not all required fields have input")
-
       end
     end
   end
