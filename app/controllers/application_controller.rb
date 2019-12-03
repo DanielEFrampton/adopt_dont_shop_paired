@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
     def setup_favorites
-      @favorites = cookies[:favorites] ||= []
-      @num_favorites = @favorites.length
+      favorites = cookies[:favorites] ||= []
+      @num_favorites = favorites.length
     end
 end
