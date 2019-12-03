@@ -14,12 +14,6 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page).to have_content('Favorites (0)')
     end
 
-    visit '/pets/new'
-
-    within('#site-header') do
-      expect(page).to have_content('Favorites (0)')
-    end
-
     visit '/shelters'
 
     within('#site-header') do
