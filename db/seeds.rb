@@ -59,10 +59,9 @@ shelter_1.reviews.create!(
  title: "Great Location",
  rating: 4,
  content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
- image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
+ image_path: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHrpmj6jvqKicV9ttIunW_Oz_PM-x5RfLsPYYCdAlw6uLf628JxA&s")
 
 shelter_1.reviews.create!(
  title: "Small store front",
  rating: 2,
- content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm",
- image_path: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHrpmj6jvqKicV9ttIunW_Oz_PM-x5RfLsPYYCdAlw6uLf628JxA&s")
+ content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
