@@ -28,12 +28,15 @@ describe "As a visitor" do
         expect(page).to have_content("Great Location")
         expect(page).to have_content("4")
         expect(page).to have_content("3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm")
+        expect(page).to have_css("img[src *= 'location-pin-700686334']")
       end
 
       within "#review-#{review_2.id}" do
         expect(page).to have_content(review_2.title)
         expect(page).to have_content(review_2.rating)
         expect(page).to have_content(review_2.content)
+        expect(page).to have_css("img[src *= 'images?q=tbn:ANd9GcRHrpmj6jvqKicV9ttIunW_Oz_PM-x5RfLsPYYCdAlw6uLf628JxA&s']")
+
       end
 
     end

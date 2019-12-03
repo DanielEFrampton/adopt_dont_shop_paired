@@ -24,7 +24,7 @@
       Title: <%= review.title %> <br/>
       Rating: <%= review.rating%> <br/>
       Content: <%= review.content %> <br/>
-      Image_path: <%= review.image_path %> <br/>
+      <%= image_tag "#{review.image_path}", alt: "#{review.image_path}" %>
     </p>
   </section>
   <% end %>
