@@ -33,7 +33,7 @@ describe "As a visitor" do
       expect(page).to have_css("img[src *= 'images?q=tbn:ANd9GcRHrpmj6jvqKicV9ttIunW_Oz_PM-x5RfLsPYYCdAlw6uLf628JxA&s']")
     end
 
-    it "Without a Image, I can add a new review for this shelter via link to a form" do 
+    it "Without a Image, I can add a new review for this shelter via link to a form" do
       shelter = Shelter.create!(
         name: "Ridiculous Test Name",
         address: "124 Fake Ln.",
@@ -60,6 +60,30 @@ describe "As a visitor" do
       expect(page).to have_content(review.title)
       expect(page).to have_content(review.rating)
       expect(page).to have_content(review.content)
+    end
+
+    describe "When I add a new review and fail to enter a title, rating, or content" do
+      it "I see a flash message giving me an error message" do
+        shelter = Shelter.create!(
+          name: "Ridiculous Test Name",
+          address: "124 Fake Ln.",
+          city: "Faketown",
+          state: "FK",
+          zip: "55555")
+
+        visit("/shelters/#{shelter.id}")
+
+        click_link('Create New Review')
+        expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
+
+        total_reviews = Review.all.count
+
+        click_button 'Submit'
+
+        expect(current_path).to eq("/shelters/#{shelter.id}/reviews/new")
+        expect(page).to have_content("Not all required fields have input")
+
+      end
     end
   end
 end
