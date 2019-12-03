@@ -18,6 +18,7 @@
     </p>
   </section>
 
+
   <% @shelter.reviews.each do |review| %>
   <section id = "review-<%= review.id %>">
     <p>
@@ -28,4 +29,6 @@
     </p>
   </section>
   <% end %>
+
+  <a href="/shelters/<%= @shelter.id %>/reviews/new">Create New Review</a>
 </main>
