@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   def index
+    @favorites = Pet.find(cookies[:favorites].split(','))
   end
 
   def create
