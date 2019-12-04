@@ -26,4 +26,12 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page).to have_content('Favorites (0)')
     end
   end
+
+  it 'I can click on the favorite indicator to be taken to the favorites index page' do
+    visit '/'
+
+    click_on('Favorites (0)')
+
+    expect(current_path).to eq('/favorites')
+  end
 end
