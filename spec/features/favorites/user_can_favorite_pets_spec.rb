@@ -37,24 +37,24 @@ RSpec.describe 'As a visitor', type: :feature do
     it "I'm taken to show page, see flash message, and indicator adds one" do
       visit "/pets/#{@pet_1.id}"
 
-      expect(page).not_to have_content("This pet has been added to your favorites!")
+      expect(page).not_to have_content("This pet has been added to your favorites! :D")
       expect(page).to have_content("Favorites (0)")
 
       click_on('Favorite This Pet')
 
       expect(current_path).to eq("/pets/#{@pet_1.id}")
-      expect(page).to have_content("This pet has been added to your favorites!")
+      expect(page).to have_content("This pet has been added to your favorites! :D")
       expect(page).to have_content("Favorites (1)")
 
       visit "/pets/#{@pet_2.id}"
 
-      expect(page).not_to have_content("This pet has been added to your favorites!")
+      expect(page).not_to have_content("This pet has been added to your favorites! :D")
       expect(page).to have_content("Favorites (1)")
 
       click_on('Favorite This Pet')
 
       expect(current_path).to eq("/pets/#{@pet_2.id}")
-      expect(page).to have_content("This pet has been added to your favorites!")
+      expect(page).to have_content("This pet has been added to your favorites! :D")
       expect(page).to have_content("Favorites (2)")
     end
   end
