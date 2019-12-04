@@ -27,7 +27,9 @@
       Rating: <%= review.rating%> <br/>
       Content: <%= review.content %> <br/>
       <%= image_tag "#{review.image_path}", alt: "#{review.image_path}" %>
-      <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %>
+      <%= link_to 'Edit Review', "/reviews/#{review.id}/edit" %> <br/>
+      <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %> <br/>
+
     </p>
   </section>
   <% end %>
