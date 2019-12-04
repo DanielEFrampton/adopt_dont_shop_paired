@@ -35,12 +35,12 @@ RSpec.describe 'As a visitor', type: :feature do
 
       expect(page).to have_css('section', count: 2)
 
-      within "favorite-#{@pet_1.id}" do
+      within "#favorite-#{@pet_1.id}" do
         expect(page).to have_link("#{@pet_1.name}", href: "/pets/#{@pet_1.id}")
         expect(page).to have_css("img[src *= '#{@pet_1.image_path}']")
       end
 
-      within "favorite-#{@pet_2.id}" do
+      within "#favorite-#{@pet_2.id}" do
         expect(page).to have_link("#{@pet_2.name}", href: "/pets/#{@pet_2.id}")
         expect(page).to have_css("img[src *= '#{@pet_2.image_path}']")
       end
