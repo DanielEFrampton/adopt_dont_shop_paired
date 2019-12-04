@@ -27,6 +27,7 @@ RSpec.describe 'As a visitor', type: :feature do
     click_on('Favorite This Pet')
     visit "/pets/#{@pet_2.id}"
     click_on('Favorite This Pet')
+
     visit '/favorites'
   end
 
@@ -38,7 +39,7 @@ RSpec.describe 'As a visitor', type: :feature do
         end
 
         within "#favorite-#{@pet_2.id}" do
-          expect(page).to have_link("Remove From Favorites", href: "/favorites/#{@pet_1.id}")
+          expect(page).to have_link("Remove From Favorites", href: "/favorites/#{@pet_2.id}")
         end
       end
     end
