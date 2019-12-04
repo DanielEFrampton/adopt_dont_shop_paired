@@ -35,6 +35,13 @@
    border-bottom-color: lightgray;
  }
 
+ #flash-header {
+   justify-content: center;
+   font-style: italic;
+   font-weight: bold;
+   background-color: lightgray;
+ }
+
  #page-header {
    background-color: cornsilk;
    margin-bottom: 1em;
