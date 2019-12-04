@@ -14,6 +14,6 @@ class FavoritesController < ApplicationController
     favorites.delete(params[:id])
     cookies[:favorites] = favorites.join(',')
     flash[:unfavorited] = "This pet has been removed from your favorites. :("
-    redirect_to "/pets/#{params[:id]}"
+    redirect_back
   end
 end
