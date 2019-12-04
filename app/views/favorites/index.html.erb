@@ -5,17 +5,26 @@
 </header>
 
 <main>
-  <% @favorites.each do |favorite| %>
-    <section id="favorite-<%= favorite.id %>">
-      <h3>
-        <%= link_to favorite.name, "/pets/#{favorite.id}" %>
-      </h3>
+  <% unless @favorites.empty? %>
+    <% @favorites.each do |favorite| %>
+      <section id="favorite-<%= favorite.id %>">
+        <h3>
+          <%= link_to favorite.name, "/pets/#{favorite.id}" %>
+        </h3>
+        <p>
+          <%= image_tag "#{favorite.image_path}", alt: "#{favorite.image_path}" %>
+        </p>
+        <navbar>
+          <%= link_to 'Remove From Favorites', "/favorites/#{favorite.id}", method: :delete %>
+        </navbar>
+      </section>
+    <% end %>
+  <% else %>
+    <aside id="no-favorites">
       <p>
-        <%= image_tag "#{favorite.image_path}", alt: "#{favorite.image_path}" %>
+        You have not favorited any pets.<br/>
+        Visit pet pages and click 'Favorite This Pet' to add them here!
       </p>
-      <navbar>
-        <%= link_to 'Remove From Favorites', "/favorites/#{favorite.id}", method: :delete %>
-      </navbar>
-    </section>
+    </aside>
   <% end %>
 </main>
