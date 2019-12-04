@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   patch '/pets/:id/:new_status', to:'pets#update_status'
 
   get '/shelters/:id/reviews/new', to: 'reviews#new'
-  get '/reviews/:review_id/edit', to: 'reviews#edit'
+  get '/reviews/:id/edit', to: 'reviews#edit'
   post '/shelters/:id', to: 'reviews#create'
+  patch '/reviews/:id', to: 'reviews#update'
 end
