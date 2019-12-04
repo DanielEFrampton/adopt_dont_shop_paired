@@ -14,6 +14,7 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    @favorited = cookies[:favorites].split(',').include?(params[:id])
   end
 
   def new
