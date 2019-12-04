@@ -1,4 +1,7 @@
 class FavoritesController < ApplicationController
+  def index
+  end
+
   def create
     cookies[:favorites] += "#{!cookies[:favorites].empty? ? ', ' : ''}#{params[:id]}"
     flash[:favorited] = "This pet has been added to your favorites!"
