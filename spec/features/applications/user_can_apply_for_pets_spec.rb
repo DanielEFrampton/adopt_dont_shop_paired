@@ -45,12 +45,12 @@ RSpec.describe "As a visitor", type: :feature do
         expect(current_path).to eq('/applications/new')
       end
 
-      xit "I can select favorited pets for which I'd like this application to apply towards" do
+      it "I can select favorited pets for which I'd like this application to apply towards" do
         visit "/applications/new"
 
-        expect(page).to have_unchecked_field(text: @pet_1.name)
-        expect(page).to have_unchecked_field(text: @pet_2.name)
-        expect(page).to_not have_unchecked_field(text: @pet_3.name)
+        expect(page).to have_unchecked_field(@pet_1.name)
+        expect(page).to have_unchecked_field(@pet_2.name)
+        expect(page).to_not have_unchecked_field(@pet_3.name)
       end
 
       describe "When I select one or more pets, and fill in my info, and click sumbit" do
