@@ -1,7 +1,7 @@
 <header id="page-header">
   <h2>Pet Info</h2>
   <navbar>
-    <%= link_to 'Favorite This Pet', "/favorites", method: :post %>
+    <%= link_to 'Favorite This Pet', "/pets/#{@pet.id}/favorites", method: :post %>
     <%= link_to 'Edit Pet Info', "/pets/#{@pet.id}/edit" %>
     <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %>
     <%= link_to *@pet.adoptable_link_args %>
