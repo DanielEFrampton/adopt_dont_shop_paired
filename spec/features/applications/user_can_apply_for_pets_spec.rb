@@ -48,16 +48,16 @@ RSpec.describe "As a visitor", type: :feature do
       it "I can select favorited pets for which I'd like this application to apply towards" do
         visit "/applications/new"
 
-        expect(page).to have_unchecked_field(@pet_1.name)
-        expect(page).to have_unchecked_field(@pet_2.name)
-        expect(page).to_not have_unchecked_field(@pet_3.name)
+        expect(page).to have_css("#checkbox-#{@pet_1.id}")
+        expect(page).to have_css("#checkbox-#{@pet_2.id}")
+        expect(page).to_not have_css("#checkbox-#{@pet_3.id}")
       end
 
       describe "When I select one or more pets, and fill in my info, and click sumbit" do
         it "Return to my favorites page, I see a flash message, and no longer see pets I applied for" do
           visit "/applications/new"
 
-          check @pet_2.name
+          find("#checkbox-#{@pet_2.id}").set(true)
 
           fill_in "Name", with: "Joe Smoe"
           fill_in "Address", with: "123 Main"
@@ -69,11 +69,11 @@ RSpec.describe "As a visitor", type: :feature do
 
           click_button 'Submit'
 
-          # expect(current_path).to eq("/favorites")
-          # expect(page).to have_content("Your application for the selected pets has been submitted.")
-          #
-          # expect(page).not_to have_content(@pet_2.name)
-          # expect(page).to have_content(@pet_1.name)
+          expect(current_path).to eq("/favorites")
+          expect(page).to have_content("Your application for the selected pets has been submitted.")
+
+          expect(page).not_to have_content(@pet_2.name)
+          expect(page).to have_content(@pet_1.name)
         end
       end
     end
