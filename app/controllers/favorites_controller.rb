@@ -18,7 +18,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy_all
-    cookies[:favorites] = []
+    cookies[:favorites] = ""
     redirect_to '/favorites'
   end
 end
