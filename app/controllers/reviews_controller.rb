@@ -15,7 +15,18 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:review_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+    if review.save
+      redirect_to "/shelters/#{review.shelter.id}"
+    else
+      flash[:notice] = "Not all required fields have input"
+      redirect_to "/reviews/#{review.id}/edit"
+    end
   end
 
   private
