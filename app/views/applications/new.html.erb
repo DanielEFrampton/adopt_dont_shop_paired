@@ -1,0 +1,14 @@
+<header id="page-header">
+  <h2> New Adoption Application </h2>
+</header>
+
+<main>
+  <section>
+    <h3> Select favorited pets you wish to adopt </h3>
+    <%= form_tag '/applications' do %>
+      <% @favorites.each do |favorite| %>
+        <%= check_box_tag favorite.name %>
+      <% end %>
+    <% end %>
+  </section>
+</main>
