@@ -1,0 +1,18 @@
+<header id="page-header">
+  <h2>Favorite Pets</h2>
+  <navbar>
+  </navbar>
+</header>
+
+<main>
+  <% @favorites.each do |favorite| %>
+    <section id="favorite-<%= favorite.id %>">
+      <h3>
+        <%= link_to favorite.name, "/pets/#{favorite.id}" %>
+      </h3>
+      <p>
+        <%= image_tag "#{favorite.image_path}", alt: "#{favorite.image_path}" %>
+      </p>
+    </section>
+  <% end %>
+</main>
