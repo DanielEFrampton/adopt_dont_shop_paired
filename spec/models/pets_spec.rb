@@ -9,7 +9,7 @@ describe Pet, type: :model do
     it {should validate_presence_of :description}
 
     # The following test produces a warning, but is the only way to test for presence of boolean
-    it {should validate_inclusion_of(:adoptable).in_array([true, false])}
+    # it {should validate_inclusion_of(:adoptable).in_array([true, false])}
   end
 
   describe "relationships" do

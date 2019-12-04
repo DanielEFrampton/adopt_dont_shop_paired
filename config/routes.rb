@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   delete 'pets/:id', to: 'pets#destroy'
   patch '/pets/:id/:new_status', to:'pets#update_status'
 
+  post 'pets/:id/favorites', to: 'favorites#create'
+  get '/favorites', to: 'favorites#index'
+  delete '/favorites/:id', to: 'favorites#destroy'
+  delete '/favorites', to: 'favorites#destroy_all'
+  
   get '/shelters/:id/reviews/new', to: 'reviews#new'
   get '/reviews/:id/edit', to: 'reviews#edit'
   post '/shelters/:id', to: 'reviews#create'
