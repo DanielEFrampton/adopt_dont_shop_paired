@@ -62,6 +62,36 @@ describe "As a visitor" do
         click_button 'Submit'
         expect(current_path).to eq("/shelters/#{@review_1.shelter.id}")
       end
+
+      describe "When I edit a review and fail to enter a title, rating, or content" do
+        it "I see a flash message giving me an error message" do
+          visit("/reviews/#{@review_1.id}/edit")
+          fill_in 'Title', with: ""
+
+          click_button 'Submit'
+
+          expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
+          expect(page).to have_content("Not all required fields have input")
+        end
+        it "I see a flash message giving me an error message" do
+          visit("/reviews/#{@review_1.id}/edit")
+          fill_in 'Rating', with: ""
+
+          click_button 'Submit'
+
+          expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
+          expect(page).to have_content("Not all required fields have input")
+        end
+        it "I see a flash message giving me an error message" do
+          visit("/reviews/#{@review_1.id}/edit")
+          fill_in 'Content', with: ""
+
+          click_button 'Submit'
+
+          expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
+          expect(page).to have_content("Not all required fields have input")
+        end
+      end
     end
   end
 end
