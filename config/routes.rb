@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   delete 'pets/:id', to: 'pets#destroy'
   patch '/pets/:id/:new_status', to:'pets#update_status'
 
-  post '/favorites', to: 'favorites#create'
+  post 'pets/:id/favorites', to: 'favorites#create'
 end
