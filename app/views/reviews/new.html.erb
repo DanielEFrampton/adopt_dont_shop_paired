@@ -1,0 +1,19 @@
+<header id="page-header">
+  <h2>Add Shelter Review</h2>
+</header>
+
+<main>
+  <section>
+    <%= form_tag "/shelters/#{@shelter.id}", method: :post do %>
+      <%= label_tag :title %>
+      <%= text_field_tag :title %> <br/>
+      <%= label_tag :rating %>
+      <%= text_field_tag :rating %> <br/>
+      <%= label_tag :content %>
+      <%= text_field_tag :content %> <br/>
+      <%= label_tag :image_path, 'Image Path' %>
+      <%= url_field_tag :image_path %> <br/>
+      <%= submit_tag 'Submit' %>
+    <% end %>
+  </section>
+</main>
