@@ -48,6 +48,12 @@ RSpec.describe 'As a visitor', type: :feature do
   describe 'After one or more applications have been created' do
     describe 'When I visit the favorites index page' do
       it 'I see list of all applied-for pets with names that link to show pages' do
+        visit '/favorites'
+
+        within '#applied_pets' do
+          expect(page).to have_link(@pet_1.name, href: "/pets/#{@pet_1.id}")
+          expect(page).not_to have_link(@pet_2.name)
+        end
       end
     end
   end
