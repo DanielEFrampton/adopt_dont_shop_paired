@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "As a visitor", type: :feature do
-  before :each do
+  before(:each) do
     @shelter_1 = Shelter.create(name: "Ridiculous Test Name",
                    address: "124 Fake Ln.",
                    city: "Faketown",
@@ -37,44 +37,45 @@ RSpec.describe "As a visitor", type: :feature do
     click_on('Favorite This Pet')
   end
 
-  describe "When I have added pets to my favorites list" do
-    describe "And I visit my favorites page" do
-      it "When I click link Adopt Favorited Pets I'm taken to a new application form" do
-        visit "/favorites"
-        click_link('Adopt Favorited Pets')
-        expect(current_path).to eq('/applications/new')
-      end
-
-      it "I can select favorited pets for which I'd like this application to apply towards" do
+  describe 'When I apply for a pet and fail to fill out any required data field' do
+    describe 'And I click on a button to submit my application' do
+      it "I'm redirect back to the new application and see a flash message" do
         visit "/applications/new"
 
-        expect(page).to have_css("#checkbox-#{@pet_1.id}")
-        expect(page).to have_css("#checkbox-#{@pet_2.id}")
-        expect(page).to_not have_css("#checkbox-#{@pet_3.id}")
+        find("#checkbox-#{@pet_2.id}").set(true)
+
+        fill_in "Address", with: "123 Main"
+        fill_in "City", with: "College Station"
+        fill_in "State", with: "Texas"
+        fill_in "Zip", with: "80155"
+        fill_in "Phone Number", with: "2014239102"
+        fill_in "Describe your qualifications", with: "nf wkfs. ekwj mqn wka?"
+
+        click_button 'Submit'
+
+        expect(current_path).to eq("/applications/new")
+        expect(page).to have_content("You must complete all fields in order to submit the application.")
       end
+    end
+  end
 
-      describe "When I select one or more pets, and fill in my info, and click sumbit" do
-        it "Return to my favorites page, I see a flash message, and no longer see pets I applied for" do
-          visit "/applications/new"
+  describe 'When I apply for a pet and fail to check a box for a pet' do
+    describe 'And I click on a button to submit my application' do
+      it "I'm redirect back to the new application and see a flash message" do
+        visit "/applications/new"
 
-          find("#checkbox-#{@pet_2.id}").set(true)
+        fill_in "Name", with: "Joe Schmoe"
+        fill_in "Address", with: "123 Main"
+        fill_in "City", with: "College Station"
+        fill_in "State", with: "Texas"
+        fill_in "Zip", with: "80155"
+        fill_in "Phone Number", with: "2014239102"
+        fill_in "Describe your qualifications", with: "nf wkfs. ekwj mqn wka?"
 
-          fill_in "Name", with: "Joe Smoe"
-          fill_in "Address", with: "123 Main"
-          fill_in "City", with: "College Station"
-          fill_in "State", with: "Texas"
-          fill_in "Zip", with: "80155"
-          fill_in "Phone Number", with: "2014239102"
-          fill_in "Describe your qualifications", with: "nf wkfs. ekwj mqn wka?"
+        click_button 'Submit'
 
-          click_button 'Submit'
-
-          expect(current_path).to eq("/favorites")
-          expect(page).to have_content("Your application for the selected pets has been submitted.")
-
-          expect(page).not_to have_css("favorite-#{@pet_2.name}")
-          expect(page).to have_content(@pet_1.name)
-        end
+        expect(current_path).to eq("/applications/new")
+        expect(page).to have_content("You must select at least one favorited pet by checking its box.")
       end
     end
   end
