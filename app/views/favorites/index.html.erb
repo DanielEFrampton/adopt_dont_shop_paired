@@ -7,8 +7,8 @@
 </header>
 
 <main>
-  <% unless @favorites.empty? %>
-    <% @favorites.each do |favorite| %>
+  <% unless @favorited_pets.empty? %>
+    <% @favorited_pets.each do |favorite| %>
       <section id="favorite-<%= favorite.id %>">
         <h3>
           <%= link_to favorite.name, "/pets/#{favorite.id}" %>
