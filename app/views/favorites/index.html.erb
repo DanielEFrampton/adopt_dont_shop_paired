@@ -29,4 +29,9 @@
       </p>
     </aside>
   <% end %>
+  <section id="applied_pets">
+    <% @applied_pets.each do |applied_pet| %>
+      <%= link_to "#{applied_pet.name}", "/pets/#{applied_pet.id}" %>
+    <% end %>
+  </section>
 </main>
