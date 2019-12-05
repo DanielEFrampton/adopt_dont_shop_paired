@@ -3,7 +3,7 @@ class Shelter < ApplicationRecord
   has_many :pets
   has_many :reviews
 
-  def pet_count_label
-    "(#{pets.count} Pet#{"s" if pets.count != 1})"
+  def pet_count
+    pets.count
   end
 end
