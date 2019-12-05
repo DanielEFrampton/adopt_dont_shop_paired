@@ -31,14 +31,15 @@ RSpec.describe 'As a visitor', type: :feature do
                              description: "Very canine",
                              adoptable: true
                            })
-    @application = Application.create({address: "123 Main",
+    @application = Application.create({ name: "Daniel The Schmuck Frampton",
+                                        address: "123 Main",
                                        city: "College Station",
                                        state: "Texas",
                                        zip: "80155",
                                        phone_number: "2014239102",
                                        description: "nf wkfs. ekwj mqn wka?"
                                       })
-    PetApplication.create({pet_id: 1, application_id: 1})
+    @pet_application = PetApplication.create({pet_id: @pet_1.id, application_id: @application.id})
     visit "/pets/#{@pet_1.id}"
     click_on('Favorite This Pet')
     visit "/pets/#{@pet_2.id}"
@@ -49,6 +50,8 @@ RSpec.describe 'As a visitor', type: :feature do
     describe 'When I visit the favorites index page' do
       it 'I see list of all applied-for pets with names that link to show pages' do
         visit '/favorites'
+
+        expect(page).to have_content(@pet_2.name)
 
         within '#applied_pets' do
           expect(page).to have_link(@pet_1.name, href: "/pets/#{@pet_1.id}")
