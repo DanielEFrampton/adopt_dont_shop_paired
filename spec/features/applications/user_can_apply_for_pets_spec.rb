@@ -72,7 +72,7 @@ RSpec.describe "As a visitor", type: :feature do
           expect(current_path).to eq("/favorites")
           expect(page).to have_content("Your application for the selected pets has been submitted.")
 
-          expect(page).not_to have_content(@pet_2.name)
+          expect(page).not_to have_css("favorite-#{@pet_2.name}")
           expect(page).to have_content(@pet_1.name)
         end
       end
