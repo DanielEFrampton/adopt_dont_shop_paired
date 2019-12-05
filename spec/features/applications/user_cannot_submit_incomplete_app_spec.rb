@@ -37,7 +37,7 @@ RSpec.describe "As a visitor", type: :feature do
     click_on('Favorite This Pet')
   end
 
-  describe 'When I apply for a pet and fail to fill out any required field' do
+  describe 'When I apply for a pet and fail to fill out any required data field' do
     describe 'And I click on a button to submit my application' do
       it "I'm redirect back to the new application and see a flash message" do
         visit "/applications/new"
@@ -55,6 +55,27 @@ RSpec.describe "As a visitor", type: :feature do
 
         expect(current_path).to eq("/applications/new")
         expect(page).to have_content("You must complete all fields in order to submit the application.")
+      end
+    end
+  end
+
+  describe 'When I apply for a pet and fail to check a box for a pet' do
+    describe 'And I click on a button to submit my application' do
+      it "I'm redirect back to the new application and see a flash message" do
+        visit "/applications/new"
+
+        fill_in "Name", with: "Joe Schmoe"
+        fill_in "Address", with: "123 Main"
+        fill_in "City", with: "College Station"
+        fill_in "State", with: "Texas"
+        fill_in "Zip", with: "80155"
+        fill_in "Phone Number", with: "2014239102"
+        fill_in "Describe your qualifications", with: "nf wkfs. ekwj mqn wka?"
+
+        click_button 'Submit'
+
+        expect(current_path).to eq("/applications/new")
+        expect(page).to have_content("You must select at least one favorited pet by checking its box.")
       end
     end
   end
