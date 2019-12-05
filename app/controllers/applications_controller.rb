@@ -7,9 +7,9 @@ class ApplicationsController < ApplicationController
     return nothing_checked if !params.has_key?(:favorite_ids)
     new_application = Application.new(application_params)
     if new_application.save
-      # params[:favorite_ids].each do |favorite_id|
-      #   PetApplication.create({pet_id: favorite_id, application_id: new_application})
-      # end
+      params[:favorite_ids].each do |favorite_id|
+        PetApplication.create({pet_id: favorite_id, application_id: new_application.id})
+      end
 
       # possible refactor to helper method
       favorites = cookies[:favorites].split(',')
