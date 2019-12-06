@@ -3,6 +3,10 @@ class ApplicationsController < ApplicationController
     @favorites = Pet.find(cookies[:favorites].split(','))
   end
 
+  def show
+    @application = Application.find(params[:id])
+  end
+
   def create
     return nothing_checked if !params.has_key?(:favorite_ids)
     new_application = Application.new(application_params)
