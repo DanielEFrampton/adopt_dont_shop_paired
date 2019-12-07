@@ -15,7 +15,12 @@
   <section>
     <h3>Pets Applied For</h3>
     <% @application.pets.each do |pet|%>
-      <p><%= link_to pet.name, "/pets/#{pet.id}" %></p>
+      <section id="pet-links-<%= pet.id %>">
+      <%= link_to pet.name, "/pets/#{pet.id}" %>
+      <% if pet.adoptable %>
+        <%= link_to "Approve application for: #{pet.name}", "/pets/#{pet.id}/pending", method: :patch %>
+      <% end %>
+      </section>
     <% end %>
   </section>
 </main>
