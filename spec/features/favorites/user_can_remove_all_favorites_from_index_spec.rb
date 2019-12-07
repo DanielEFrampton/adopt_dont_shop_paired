@@ -43,6 +43,7 @@ RSpec.describe 'As a visitor', type: :feature do
         click_on('Remove All Favorited Pets')
 
         expect(current_path).to eq('/favorites')
+        expect(page).to have_content("You have removed all pets from your favorites list. ╥﹏╥")
         expect(page).to have_content("You have not favorited any pets. Visit pet pages and click 'Favorite This Pet' to add them here!")
         expect(page).to have_content('Favorites (0)')
       end
