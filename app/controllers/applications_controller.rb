@@ -1,4 +1,8 @@
 class ApplicationsController < ApplicationController
+  def index
+    @applications = Pet.find(params[:id]).applications
+  end
+
   def new
     @favorited_pets = Pet.find(@favorites.ids)
   end
@@ -27,7 +31,7 @@ class ApplicationsController < ApplicationController
   end
 
   private
-  
+
     def application_params
       params.permit(:name, :address, :city, :state, :zip, :phone_number, :description)
     end
