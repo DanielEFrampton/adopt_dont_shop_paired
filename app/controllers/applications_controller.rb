@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   def index
-    @applications = Pet.find(params[:id]).applications
+    @pet = Pet.find(params[:id])
   end
 
   def new
