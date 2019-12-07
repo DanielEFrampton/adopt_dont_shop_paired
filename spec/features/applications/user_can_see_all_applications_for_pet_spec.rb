@@ -57,7 +57,7 @@ RSpec.describe 'As a visitor', type: :feature do
     end
   end
 
-  describe 'When I click that link' do
+  describe 'When I click that link and applications exist for pet' do
     it 'I see a list of names of applicants for pet linking to application show page' do
       visit "/pets/#{@pet_1.id}"
       click_on("Applications For This Pet")
@@ -69,6 +69,15 @@ RSpec.describe 'As a visitor', type: :feature do
       visit "/pets/#{@pet_3.id}/applications"
       expect(page).to have_link("#{@application_2.name}", href: "/applications/#{@application_2.id}")
       expect(page).not_to have_link("#{@application.name}")
+    end
+  end
+
+  describe "When I click that link and applications do not exist for pet" do
+    it "I see a message saying applications for that pet don't exist yet" do
+      visit "/pets/#{@pet_2.id}"
+      click_on("Applications For This Pet")
+
+      expect(page).to have_content("Applications for this pet don't exist yet. :/")
     end
   end
 end
