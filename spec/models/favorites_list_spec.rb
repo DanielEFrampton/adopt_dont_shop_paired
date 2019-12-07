@@ -32,5 +32,18 @@ end
       expect(@list_1.favorited?("1")).to eq(true)
       expect(@list_1.favorited?("5")).to eq(false)
     end
+
+    it 'can add a pet_id to its favorites list hash' do
+      @list_1.add("5")
+      expected_hash = {"1" => true,
+                      "2" => true,
+                      "3" => true,
+                      "4" => true,
+                      "5" => true}
+
+      expect(@list_1.favorited?("5")).to eq(true)
+      expect(@list_1.favorited_pets).to eq(expected_hash)
+      expect(@list_1.favorited_pets["5"]).to eq(true)
+    end
   end
 end
