@@ -57,12 +57,14 @@ class PetsController < ApplicationController
   end
 
   def update_status
-    pet = Pet.find(params[:id])
+    pet = Pet.find(params[:pet_id])
     pet.update({
                 adoptable: params[:new_status] == "adoptable" ? true : false
               })
     pet.save
-
+    pet_application = PetApplication.where(application_id: params[:application_id], pet_id: params[:pet_id]).first
+    pet_application.update(approved: true)
+    pet_application.save
     redirect_to "/pets/#{pet.id}"
   end
 end
