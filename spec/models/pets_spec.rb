@@ -50,5 +50,10 @@ describe Pet, type: :model do
       expected_result_2 = ['Change to Adoptable', "/pets/#{@pet_2.id}/adoptable", method: :patch]
       expect(@pet_2.adoptable_link_args).to eq(expected_result_2)
     end
+
+    it "can return adoptable/pending for adoptable status" do
+      expect(@pet_1.adoptable_status).to eq("adoptable")
+      expect(@pet_2.adoptable_status).to eq("pending")
+    end
   end
 end
