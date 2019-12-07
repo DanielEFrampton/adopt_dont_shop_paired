@@ -7,8 +7,8 @@
     <h3> Select favorited pets you wish to adopt </h3>
     <%= form_tag '/applications' do %>
       <% @favorited_pets.each do |favorite| %>
+        <%= label_tag favorite.id, favorite.name %>
         <%= check_box_tag 'favorite_ids[]', favorite.id, false, :id => "checkbox-#{favorite.id}" %>
-        <%= label_tag favorite.name %>
       <% end %>
       <%= label_tag :name %>
       <%= text_field_tag :name %><br/>
