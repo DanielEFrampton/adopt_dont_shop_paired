@@ -52,9 +52,9 @@ describe Shelter, type: :model do
                                     })
     end
 
-    it "can generate pet count string" do
-      expect(@shelter_1.pet_count_label).to eq('(1 Pet)')
-      expect(@shelter_2.pet_count_label).to eq('(2 Pets)')
+    it "can return pet count for individual shelter" do
+      expect(@shelter_1.pet_count).to eq(1)
+      expect(@shelter_2.pet_count).to eq(2)
     end
   end
 end

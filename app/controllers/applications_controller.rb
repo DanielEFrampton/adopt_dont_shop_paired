@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   def new
-    @favorites = Pet.find(cookies[:favorites].split(','))
+    @favorited_pets = Pet.find(@favorites.ids)
   end
 
   def show
@@ -15,12 +15,8 @@ class ApplicationsController < ApplicationController
         PetApplication.create({pet_id: favorite_id, application_id: new_application.id})
       end
 
-      # possible refactor to helper method
-      favorites = cookies[:favorites].split(',')
-      params[:favorite_ids].each do |favorite_id|
-        favorites.delete(favorite_id)
-      end
-      cookies[:favorites] = favorites.join(',')
+      @favorites.delete(params[:favorite_ids])
+      session[:favorites] = @favorites.favorited_pets
 
       flash[:applied] = "Your application for the selected pets has been submitted."
       redirect_to "/favorites"
@@ -31,6 +27,7 @@ class ApplicationsController < ApplicationController
   end
 
   private
+  
     def application_params
       params.permit(:name, :address, :city, :state, :zip, :phone_number, :description)
     end

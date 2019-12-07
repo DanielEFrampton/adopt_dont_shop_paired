@@ -1,7 +1,7 @@
 <header id="page-header">
   <h2>Pet Info</h2>
   <navbar>
-    <% unless @favorited %>
+    <% unless @favorites.favorited?(@pet.id) %>
       <%= link_to 'Favorite This Pet', "/pets/#{@pet.id}/favorites", method: :post %>
     <% else %>
       <%= link_to 'Remove From Favorites', "/favorites/#{@pet.id}", method: :delete %>
