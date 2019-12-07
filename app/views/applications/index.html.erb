@@ -1,0 +1,15 @@
+<header id="page-header">
+  <h2>Applications for <%= link_to @pet.name, "/pets/#{@pet.id}" %></h2>
+</header>
+
+<main>
+  <section>
+    <% unless @pet.applications.empty? %>
+      <% @pet.applications.each do |application| %>
+        <p><%= link_to application.name, "/applications/#{application.id}" %></p>
+      <% end %>
+    <% else %>
+      <p>Applications for this pet don't exist yet. :/</p>
+    <% end %>
+  </section>
+</main>

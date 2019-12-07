@@ -10,6 +10,7 @@
     <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %>
     <%= link_to *@pet.adoptable_link_args %>
     <%= link_to "This Pet's Shelter", "/shelters/#{@pet.shelter.id}" %>
+    <%= link_to "Applications For This Pet", "/pets/#{@pet.id}/applications" %>
   </navbar>
 </header>
 
