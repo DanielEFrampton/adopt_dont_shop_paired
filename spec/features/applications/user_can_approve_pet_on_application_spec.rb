@@ -45,7 +45,7 @@ describe "As a visitor" do
       end
     end
     describe "When I click on a link to approve the application for one particular pet" do
-      xit "I'm taken back to that pet's show page and see status 'pending' with applicant's name" do
+      it "I'm taken back to that pet's show page and see status 'pending' with applicant's name" do
         visit "/applications/#{@application.id}"
 
         click_link "Approve application for: #{@pet_2.name}"

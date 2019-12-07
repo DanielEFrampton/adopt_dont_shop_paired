@@ -57,7 +57,7 @@ RSpec.describe 'In the Pet edit process', type: :feature do
 
       expect(current_path).to eq("/pets/#{@pet_1.id}")
       expect(page).to have_content("Philippa")
-      expect(page).to have_content("Adoptable: true")
+      expect(page).to have_content("Adoptable: adoptable")
       expect(page).to have_content("Approximate Age: 67")
       expect(page).to have_content("Sex: female")
       expect(page).to have_content("Description: Somewhat cute")
@@ -71,7 +71,7 @@ RSpec.describe 'In the Pet edit process', type: :feature do
 
       expect(current_path).to eq("/pets/#{@pet_1.id}")
       expect(page).to have_content("Philippa")
-      expect(page).to have_content("Adoptable: true")
+      expect(page).to have_content("Adoptable: adoptable")
       expect(page).to have_content("Approximate Age: 3")
       expect(page).to have_content("Sex: male")
       expect(page).to have_content("Description: Very canine")
