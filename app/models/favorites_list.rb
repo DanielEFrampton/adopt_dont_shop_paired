@@ -18,4 +18,8 @@ class FavoritesList
   def favorited?(pet_id)
     @favorited_pets.has_key?(pet_id)
   end
+
+  def add(pet_id)
+    @favorited_pets[pet_id] = true
+  end
 end
