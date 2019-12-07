@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
     def setup_favorites
-      cookies[:favorites] ||= ""
-      @favorites ||= FavoritesList.new(cookies[:favorites])
+      @favorites = FavoritesList.new(cookies[:favorites])
     end
 end
