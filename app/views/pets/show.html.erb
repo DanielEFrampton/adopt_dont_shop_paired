@@ -8,7 +8,6 @@
     <% end %>
     <%= link_to 'Edit Pet Info', "/pets/#{@pet.id}/edit" %>
     <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %>
-    <%= link_to *@pet.adoptable_link_args %>
     <%= link_to "This Pet's Shelter", "/shelters/#{@pet.shelter.id}" %>
     <%= link_to "Applications For This Pet", "/pets/#{@pet.id}/applications" %>
   </navbar>
@@ -18,7 +17,10 @@
   <section>
     <h3><%= link_to "#{@pet.name}", "/pets/#{@pet.id}" %></h3>
     <p>
-      Adoptable: <%= @pet.adoptable %><br/>
+      <% if !@pet.adoptable %>
+        <%= "On hold for #{@pet.owner}"%><br/>
+      <% end %>
+      Adoptable: <%= @pet.adoptable_status %><br/>
       Description: <%= @pet.description %><br/>
       Approximate Age: <%= @pet.approx_age %><br/>
       Sex: <%= @pet.sex %><br/>
