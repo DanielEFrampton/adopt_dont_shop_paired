@@ -16,7 +16,7 @@ class FavoritesList
   end
 
   def favorited?(pet_id)
-    @favorited_pets.has_key?(pet_id)
+    @favorited_pets.has_key?(pet_id.to_s)
   end
 
   def add(pet_id)
