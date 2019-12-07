@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
     def setup_favorites
-      @favorites = FavoritesList.new(cookies[:favorites])
+      @favorites = FavoritesList.new(session[:favorites])
     end
 end
