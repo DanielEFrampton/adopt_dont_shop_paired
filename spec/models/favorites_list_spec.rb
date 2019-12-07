@@ -7,7 +7,7 @@ before(:each) do
                     "3" => true,
                     "4" => true}
   @list_1 = FavoritesList.new(@favorites_hash)
-  @list_2 = FavoritesList.new
+  @list_2 = FavoritesList.new({})
 end
 
   describe "methods" do
