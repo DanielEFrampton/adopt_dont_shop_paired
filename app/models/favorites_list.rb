@@ -14,4 +14,8 @@ class FavoritesList
   def total_favorites
     @favorited_pets.keys.length
   end
+
+  def favorited?(pet_id)
+    @favorited_pets.has_key?(pet_id)
+  end
 end

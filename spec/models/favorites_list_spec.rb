@@ -27,5 +27,10 @@ end
       expect(@list_1.total_favorites).to eq(4)
       expect(@list_2.total_favorites).to eq(0)
     end
+
+    it 'can return whether a given pet_id exists on favorites list' do
+      expect(@list_1.favorited?("1")).to eq(true)
+      expect(@list_1.favorited?("5")).to eq(false)
+    end
   end
 end
