@@ -1,0 +1,11 @@
+<header id="page-header">
+  <h2>Applications for <%= @pet.name %></h2>
+</header>
+
+<main>
+  <section>
+    <% @pet.applications.each do |application| %>
+      <p><%= link_to application.name, "/applications/#{application.id}" %></p>
+    <% end %>
+  </section>
+</main>
