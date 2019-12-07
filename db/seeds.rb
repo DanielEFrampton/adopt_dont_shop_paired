@@ -23,7 +23,7 @@ shelter_2 = Shelter.create(
   state: "FK",
   zip: "55555")
 
-shelter_1.pets.create({
+pet_1 = shelter_1.pets.create({
   name: "Bill",
   approx_age: 3,
   sex: "male",
@@ -31,7 +31,7 @@ shelter_1.pets.create({
   description: "Very canine",
   adoptable: true})
 
-shelter_1.pets.create({
+pet_2 = shelter_1.pets.create({
   name: "Phil",
   approx_age: 1,
   sex: "male",
@@ -65,3 +65,18 @@ shelter_1.reviews.create!(
  title: "Small store front",
  rating: 2,
  content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
+
+ application = Application.create(
+   name: "Daniel The Schmuck Frampton",
+   address: "123 Main",
+   city: "College Station",
+   state: "Texas",
+   zip: "80155",
+   phone_number: "2014239102",
+   description: "nf wkfs. ekwj mqn wka?")
+
+ application.pets << [pet_1, pet_2]
+
+ last_application = PetApplication.last
+ last_application.update(approved: true)
+ last_application.save
