@@ -22,4 +22,12 @@ class FavoritesList
   def add(pet_id)
     @favorited_pets[pet_id] = true
   end
+
+  def delete(pet_id)
+    @favorited_pets.delete(pet_id)
+  end
+
+  def delete_all
+    @favorited_pets = Hash.new
+  end
 end
