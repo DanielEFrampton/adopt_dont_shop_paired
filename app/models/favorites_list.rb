@@ -23,8 +23,8 @@ class FavoritesList
     @favorited_pets[pet_id] = true
   end
 
-  def delete(pet_id)
-    @favorited_pets.delete(pet_id)
+  def delete(pet_ids)
+    @favorited_pets.except!(*pet_ids)
   end
 
   def delete_all

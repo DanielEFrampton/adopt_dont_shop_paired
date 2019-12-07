@@ -46,13 +46,20 @@ end
       expect(@list_1.favorited_pets["5"]).to eq(true)
     end
 
-    it 'can delete a pet_id from its favorites list' do
+    it 'can delete one or more pet ids from its favorites list' do
       @list_1.delete("1")
       expected_hash = {"2" => true, "3" => true, "4" => true}
 
       expect(@list_1.favorited?("1")).to eq(false)
       expect(@list_1.favorited_pets).to eq(expected_hash)
       expect(@list_1.favorited_pets["1"]).to eq(nil)
+
+      @list_1.delete(["2","3"])
+      expected_hash_2 = {"4" => true}
+
+      expect(@list_1.favorited?("2")).to eq(false)
+      expect(@list_1.favorited?("3")).to eq(false)
+      expect(@list_1.favorited_pets).to eq(expected_hash_2)
     end
 
     it 'can delete all pets from its favorites list' do
