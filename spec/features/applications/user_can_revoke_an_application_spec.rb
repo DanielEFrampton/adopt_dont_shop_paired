@@ -35,7 +35,7 @@ describe "As a visitor" do
     visit "/applications/#{@application.id}"
     click_link "Approve application for: #{@pet_2.name}"
   end
-
+  
   describe "After an application has been approved for a pet and I visit application show page"
     describe "I click on the link to unapprove the application" do
       it "And I can see the button to approve the application for that pet again" do
