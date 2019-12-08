@@ -1,7 +1,6 @@
 require 'rails_helper'
 # User Story 25, Approved Applications can be revoked
 
-
 describe "As a visitor" do
   before :each do
     @shelter_1 = Shelter.create(
@@ -36,6 +35,7 @@ describe "As a visitor" do
     visit "/applications/#{@application.id}"
     click_link "Approve application for: #{@pet_2.name}"
   end
+
   describe "After an application has been approved for a pet and I visit application show page"
     describe "I click on the link to unapprove the application" do
       it "And I can see the button to approve the application for that pet again" do
@@ -48,19 +48,17 @@ describe "As a visitor" do
         expect(page).to have_link "Approve application for: #{@pet_2.name}"
         expect(page).not_to have_link "Revoke application for: #{@pet_2.name}"
       end
-      describe "When I go to that pets show page" do
-        it "I can see that the pets adoption status is now back to adoptable and not on hold" do
-          visit "/applications/#{@application.id}"
-          expect(page).not_to have_link "Approve application for: #{@pet_2.name}"
+      it "On Pet show page, I can see that the pets adoption status is now back to adoptable and not on hold" do
+        visit "/applications/#{@application.id}"
+        expect(page).not_to have_link "Approve application for: #{@pet_2.name}"
 
-          click_link "Revoke application for: #{@pet_2.name}"
+        click_link "Revoke application for: #{@pet_2.name}"
 
-          visit "/pets/#{@pet_2.id}"
+        visit "/pets/#{@pet_2.id}"
 
-          expect(page).to have_content "Adoptable: adoptable"
-          expect(page).not_to have_content "On hold for #{@application.name}"
-        end
-      end
+        expect(page).to have_content "Adoptable: adoptable"
+        expect(page).not_to have_content "On hold for #{@application.name}"
+      # invisible end? literally makes no sense that this block errors when you add an end
     end
   end
 end
