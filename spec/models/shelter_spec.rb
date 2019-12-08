@@ -48,13 +48,18 @@ describe Shelter, type: :model do
                                       sex: "male",
                                       image_path: "http://www.thing.com/image.png",
                                       description: "Very canine",
-                                      adoptable: true
+                                      adoptable: false
                                     })
     end
 
     it "can return pet count for individual shelter" do
       expect(@shelter_1.pet_count).to eq(1)
       expect(@shelter_2.pet_count).to eq(2)
+    end
+
+    it "can determine if there is no pending pets that belong to the shelter" do
+      expect(@shelter_1.no_pending?).to eq(true)
+      expect(@shelter_2.no_pending?).to eq(false)
     end
   end
 end
