@@ -12,12 +12,19 @@
 
 <main>
   <section>
+    <h3>Shelter Details</h3>
     <p>
       Name: <%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %><br/>
       Address: <%= @shelter.address %><br/>
       City: <%= @shelter.city %><br/>
       State: <%= @shelter.state %><br/>
       Zip: <%= @shelter.zip %><br/>
+    </p>
+    <h3>Shelter Statistics</h3>
+    <p>
+      Number of Pets Here: <%= @shelter.pet_count %><br/>
+      Average Review Rating: <%= @shelter.average_rating ? @shelter.average_rating : "(no reviews)" %><br/>
+      Applications On File: <%= @shelter.application_count %><br/>
     </p>
   </section>
 
