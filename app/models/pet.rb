@@ -5,11 +5,11 @@ class Pet < ApplicationRecord
   has_many :pet_applications
   has_many :applications, through: :pet_applications
 
-  def adoptable_link_args
-    if adoptable
-      ['Change to Adoption Pending', "/pets/#{id}/pending", method: :patch]
-    else
-      ['Change to Adoptable', "/pets/#{id}/adoptable", method: :patch]
-    end
+  def adoptable_status
+    adoptable ? "adoptable" : "pending"
+  end
+
+  def owner
+    Pet.joins(:applications).where("pet_applications.approved=true AND pets.id=#{id}").pluck('applications.name').first
   end
 end

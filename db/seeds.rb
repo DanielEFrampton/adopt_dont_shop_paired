@@ -23,7 +23,7 @@ shelter_2 = Shelter.create(
   state: "FK",
   zip: "55555")
 
-shelter_1.pets.create({
+pet_1 = shelter_1.pets.create({
   name: "Bill",
   approx_age: 3,
   sex: "male",
@@ -31,7 +31,7 @@ shelter_1.pets.create({
   description: "Very canine",
   adoptable: true})
 
-shelter_1.pets.create({
+pet_2 = shelter_1.pets.create({
   name: "Phil",
   approx_age: 1,
   sex: "male",

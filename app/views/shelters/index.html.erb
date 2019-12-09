@@ -22,7 +22,9 @@
       <navbar>
         <%= link_to 'Pets at This Shelter', "/shelters/#{shelter.id}/pets" %>
         <%= link_to 'Edit Shelter', "/shelters/#{shelter.id}/edit" %>
-        <%= link_to 'Delete Shelter', "/shelters/#{shelter.id}", method: :delete %>
+        <% if shelter.no_pending? %>
+          <%= link_to 'Delete Shelter', "/shelters/#{shelter.id}", method: :delete %>
+        <% end %>
       </navbar>
     </section>
   <% end %>
