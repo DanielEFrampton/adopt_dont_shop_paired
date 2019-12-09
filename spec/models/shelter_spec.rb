@@ -50,6 +50,33 @@ describe Shelter, type: :model do
                                       description: "Very canine",
                                       adoptable: false
                                     })
+      @review_1 = @shelter_1.reviews.create!(
+        title: "Great Location",
+        rating: 4,
+        content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
+        image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
+      @review_2 = @shelter_1.reviews.create!(
+        title: "Small store front",
+        rating: 2,
+        content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
+      @review_3 = @shelter_2.reviews.create!(
+        title: "Great Location",
+        rating: 10,
+        content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
+        image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
+      @review_4 = @shelter_2.reviews.create!(
+        title: "Small store front",
+        rating: 1,
+        content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
+      @application = Application.create(
+        name: "Daniel The Schmuck Frampton",
+        address: "123 Main",
+        city: "College Station",
+        state: "Texas",
+        zip: "80155",
+        phone_number: "2014239102",
+        description: "nf wkfs. ekwj mqn wka?")
+      @application.pets << [@pet_2]
     end
 
     it "can return pet count for individual shelter" do
@@ -60,6 +87,18 @@ describe Shelter, type: :model do
     it "can determine if there is no pending pets that belong to the shelter" do
       expect(@shelter_1.no_pending?).to eq(true)
       expect(@shelter_2.no_pending?).to eq(false)
+    end
+
+    it "can return average of all ratings for individual shelter" do
+      expect(@shelter_1.average_rating).to eq(3)
+      expect(@shelter_2.average_rating).to eq(5.5)
+    end
+
+    it "can return number of applications for pets in individual shelter" do
+      expect(@shelter_1.application_count).to eq(0)
+      expect(@shelter_2.application_count).to eq(1)
+      @application.pets << @pet_3
+      expect(@shelter_2.application_count).to eq(1)      
     end
   end
 end
