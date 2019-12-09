@@ -20,15 +20,13 @@ class SheltersController < ApplicationController
   end
 
   def create
-    shelter = Shelter.new({
-                          name:     params[:name],
-                          address:  params[:address],
-                          city:     params[:city],
-                          state:    params[:state],
-                          zip:      params[:zip]
-                         })
-    shelter.save
-    redirect_to '/shelters'
+    shelter = Shelter.new(shelter_params)
+    if shelter.save
+      redirect_to '/shelters'
+    else
+      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params}"
+      redirect_to '/shelters/new'
+    end
   end
 
   def edit
@@ -37,13 +35,7 @@ class SheltersController < ApplicationController
 
   def update
     shelter = Shelter.find(params[:id])
-    shelter.update({
-                    name:     params[:name],
-                    address:  params[:address],
-                    city:     params[:city],
-                    state:    params[:state],
-                    zip:      params[:zip]
-                   })
+    shelter.update(shelter_params)
     shelter.save
     redirect_to "/shelters/#{shelter.id}"
   end
@@ -66,4 +58,17 @@ class SheltersController < ApplicationController
       @show_all = "active_sort"
     end
   end
+
+  private
+
+    def shelter_params
+      params.permit(:name, :address, :city, :state, :zip)
+    end
+
+    def empty_params
+      shelter_params.to_h.reduce("") do |empty_params,(key, value)|
+        next empty_params if value != ""
+        empty_params.empty? ? empty_params += key.capitalize : empty_params += ', ' + key.capitalize
+      end
+    end
 end
