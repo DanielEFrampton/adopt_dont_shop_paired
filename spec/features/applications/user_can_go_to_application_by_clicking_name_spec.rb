@@ -28,20 +28,23 @@ RSpec.describe 'As a visitor', type: :feature do
     @application.pets << [@pet_1]
   end
 
-  describe "Any time I see an applicant's name within this application" do
-    it 'It is a link to their application show page' do
+  describe "When I see an applicant's name" do
+    it 'on a pet show page after approval it is a link to their application show page' do
+      visit "/applications/#{@application.id}"
+      click_on "Approve application for: #{@pet_1.name}"
+      
       visit "/pets/#{@pet_1.id}"
 
       expect(page).to have_link("#{@application.name}", href: "/applications/#{@application.id}")
     end
 
-    it 'It is a link to their application show page' do
+    it 'on a pet applications index page it is a link to their application show page' do
       visit "/pets/#{@pet_1.id}/applications"
 
       expect(page).to have_link("#{@application.name}", href: "/applications/#{@application.id}")
     end
 
-    it 'It is a link to their application show page' do
+    it 'on a application show page it is a link to their application show page' do
       visit "/applications/#{@application.id}"
 
       expect(page).to have_link("#{@application.name}", href: "/applications/#{@application.id}")
