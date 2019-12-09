@@ -8,10 +8,6 @@ class Shelter < ApplicationRecord
   end
 
   def no_pending? # needs heavy refactor, ruby doc site is down (~12/8/19 7am)
-    return true if pet_count == 0
-    pets.each do |pet|
-      return false if !pet.adoptable
-    end
-    true
+    pets.all? { |pet| pet.adoptable }
   end
 end
