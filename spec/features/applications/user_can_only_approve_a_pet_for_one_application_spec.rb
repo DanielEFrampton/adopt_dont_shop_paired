@@ -31,7 +31,7 @@ describe "As a visitor" do
       phone_number: "2014239102",
       description: "nf wkfs. ekwj mqn wka?")
     @application_2 = Application.create(
-      name: "Daniel The Schmuck Frampton",
+      name: "Ryan A",
       address: "123 Main",
       city: "College Station",
       state: "Texas",
@@ -56,7 +56,7 @@ describe "As a visitor" do
         expect(page).not_to have_link("Approve application for: #{@pet_2.name}")
         expect(page).to have_link("Approve application for: #{@pet_1.name}")
 
-        visit "/pets/#{@pet_2.id}" # still shows on index page (remains on file)
+        visit "/pets/#{@pet_2.id}/applications" # still shows on index page (remains on file)
         expect(page).to have_content(@application.name)
         expect(page).to have_content(@application_2.name)
       end
