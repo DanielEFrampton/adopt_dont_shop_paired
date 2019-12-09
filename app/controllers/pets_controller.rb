@@ -22,15 +22,13 @@ class PetsController < ApplicationController
 
   def create
     shelter = Shelter.find(params[:id])
-    pet = shelter.pets.create({
-                                name:         params[:name],
-                                approx_age:   params[:approx_age],
-                                sex:          params[:sex],
-                                image_path:   params[:image_path],
-                                description:  params[:description]
-                              })
-    pet.save
-    redirect_to "/shelters/#{shelter.id}/pets"
+    pet = shelter.pets.create(pet_params)
+    if pet.save
+      redirect_to "/shelters/#{shelter.id}/pets"
+    else
+      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params}"
+      redirect_to "/shelters/#{shelter.id}/pets/new"
+    end
   end
 
   def edit
@@ -39,19 +37,19 @@ class PetsController < ApplicationController
 
   def update
     pet = Pet.find(params[:id])
-    pet.update({
-                name:         params[:name],
-                approx_age:   params[:approx_age],
-                sex:          params[:sex],
-                image_path:   params[:image_path],
-                description:  params[:description]
-              })
-    pet.save
-
-    redirect_to "/pets/#{pet.id}"
+    pet.update(pet_params)
+    if pet.save
+      redirect_to "/pets/#{pet.id}"
+    else
+      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params}"
+      redirect_to "/pets/#{pet.id}/edit"
+    end
   end
 
   def destroy
+    @favorites.delete(params[:id])
+    session[:favorites] = @favorites.favorited_pets
+
     Pet.destroy(params[:id])
     redirect_to '/pets'
   end
@@ -72,6 +70,19 @@ class PetsController < ApplicationController
       pet_application.update(approved: false)
       pet_application.save
       redirect_to "/applications/#{params[:application_id]}"
+    end
+  end
+
+  private
+
+  def pet_params
+    params.permit(:name, :approx_age, :sex, :image_path, :description)
+  end
+
+  def empty_params
+    pet_params.to_h.reduce("") do |empty_params,(key, value)|
+      next empty_params if value != ""
+      empty_params.empty? ? empty_params += key.capitalize : empty_params += ', ' + key.capitalize
     end
   end
 end
