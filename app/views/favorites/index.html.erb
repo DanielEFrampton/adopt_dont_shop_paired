@@ -30,8 +30,9 @@
     </aside>
   <% end %>
   <section id="applied_pets">
+    <h3>All Applied-For Pets</h3>
     <% @applied_pets.each do |applied_pet| %>
-      <%= link_to "#{applied_pet.name}", "/pets/#{applied_pet.id}" %>
+      <p><%= link_to "#{applied_pet.name}", "/pets/#{applied_pet.id}" %></p>
     <% end %>
   </section>
 </main>

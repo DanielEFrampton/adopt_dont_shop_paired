@@ -4,6 +4,7 @@
 
 <main>
   <section>
+    <h3>Names of Applicants</h3>
     <% unless @pet.applications.empty? %>
       <% @pet.applications.each do |application| %>
         <p><%= link_to application.name, "/applications/#{application.id}" %></p>
