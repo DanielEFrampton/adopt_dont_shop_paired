@@ -2,7 +2,7 @@ class Pet < ApplicationRecord
   validates_presence_of :name, :sex, :approx_age, :image_path, :description
   validates_inclusion_of :adoptable, :in => [true, false]
   belongs_to :shelter
-  has_many :pet_applications
+  has_many :pet_applications, dependent: :destroy
   has_many :applications, through: :pet_applications
 
   def adoptable_status
@@ -10,6 +10,6 @@ class Pet < ApplicationRecord
   end
 
   def owner
-    Pet.joins(:applications).where("pet_applications.approved=true AND pets.id=#{id}").pluck('applications.name').first
+    Application.joins(:pets).where("pet_applications.approved=true AND pets.id=#{id}").first
   end
 end

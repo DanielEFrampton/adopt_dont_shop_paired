@@ -4,7 +4,7 @@
 
 <main>
   <section>
-    <p>Name: <%= @application.name %></p>
+    <p>Name: <%= link_to @application.name, "/applications/#{@application.id}" %></p>
     <p>Address: <%= @application.address %></p>
     <p>City: <%= @application.city %></p>
     <p>State: <%= @application.state %></p>
