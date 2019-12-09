@@ -64,14 +64,32 @@ RSpec.describe 'As a visitor', type: :feature do
       title: "Small store front",
       rating: 1,
       content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
+    @shelter_3 = Shelter.create(
+      name: "Unreviewed Shelter",
+      address: "124 Fake Ln.",
+      city: "Faketown",
+      state: "FK",
+      zip: "55555")
   end
 
   describe "When I visit a shelter's show page" do
     it 'I see shelter pet count, average rating, number of applications' do
+      visit "/shelters/#{@shelter_1.id}"
+
+      expect(page).to have_content("Number of Pets Here: 2")
+      expect(page).to have_content("Average Review Rating: 3")
+      expect(page).to have_content("Applications On File: 1")
+
       visit "/shelters/#{@shelter_2.id}"
 
       expect(page).to have_content("Number of Pets Here: 1")
       expect(page).to have_content("Average Review Rating: 5.5")
+      expect(page).to have_content("Applications On File: 0")
+
+      visit "/shelters/#{@shelter_3.id}"
+
+      expect(page).to have_content("Number of Pets Here: 0")
+      expect(page).to have_content("Average Review Rating: (no reviews)")
       expect(page).to have_content("Applications On File: 0")
     end
   end
