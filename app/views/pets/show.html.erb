@@ -20,7 +20,7 @@
     <h3><%= link_to "#{@pet.name}", "/pets/#{@pet.id}" %></h3>
     <p>
       <% if !@pet.adoptable %>
-        <%= "On hold for #{@pet.owner}"%><br/>
+        On hold for <%= link_to "#{@pet.owner.name}", "/applications/#{@pet.owner.id}" %><br/>
       <% end %>
       Adoptable: <%= @pet.adoptable_status %><br/>
       Description: <%= @pet.description %><br/>
