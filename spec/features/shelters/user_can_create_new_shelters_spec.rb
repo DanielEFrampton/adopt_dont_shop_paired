@@ -39,4 +39,26 @@ RSpec.describe "shelter creation page", type: :feature do
     expect(current_path).to eq('/shelters')
     expect(page).to have_content("Ridiculous Test Name 2")
   end
+
+  it "displays flash message saying which fields are not filled if they're empty" do
+    visit 'shelters/new'
+
+    fill_in 'Address', with: "125 Fake Ln."
+    fill_in 'City', with: "Faketown"
+    fill_in 'State', with: "FK"
+    fill_in 'Zip', with: "55555"
+
+    click_button 'Submit'
+
+    expect(current_path).to eq('/shelters/new')
+    expect(page).to have_content("You attempted to submit the form without completing required field(s): Name")
+
+    fill_in 'City', with: "Faketown"
+    fill_in 'State', with: "FK"
+    fill_in 'Zip', with: "55555"
+
+    click_button 'Submit'
+
+    expect(page).to have_content("You attempted to submit the form without completing required field(s): Name, Address")
+  end
 end
