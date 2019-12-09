@@ -19,7 +19,9 @@
       </p>
       <navbar>
         <%= link_to 'Edit Pet Info', "/pets/#{pet.id}/edit" %>
-        <%= link_to 'Delete Pet', "/pets/#{pet.id}", method: :delete %>
+        <% if pet.adoptable %>
+          <%= link_to 'Delete Pet', "/pets/#{pet.id}", method: :delete %>
+        <% end %>
       </navbar>
     </section>
   <% end %>
