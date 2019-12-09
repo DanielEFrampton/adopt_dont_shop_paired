@@ -101,10 +101,13 @@ RSpec.describe 'As a visitor', type: :feature do
 
       click_on "Delete Shelter"
 
-      expect{Pet.find(@pet_4.id)}.to raise_error(ActiveRecord::RecordNotFound)
-      expect{Pet.find(@pet_5.id)}.to raise_error(ActiveRecord::RecordNotFound)
-      expect{Pet.find(@pet_6.id)}.to raise_error(ActiveRecord::RecordNotFound)
-      expect(Pet.count).to eq(3)
+      visit "/pets"
+      expect(page).to have_css("#pet-#{@pet_1.id}-section")
+      expect(page).to have_css("#pet-#{@pet_2.id}-section")
+      expect(page).to have_css("#pet-#{@pet_3.id}-section")
+      expect(page).not_to have_css("#pet-#{@pet_4.id}-section")
+      expect(page).not_to have_css("#pet-#{@pet_5.id}-section")
+      expect(page).not_to have_css("#pet-#{@pet_6.id}-section")
     end
   end
 end
