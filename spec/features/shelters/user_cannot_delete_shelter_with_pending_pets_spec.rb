@@ -49,7 +49,7 @@ describe "As a visitor" do
     click_link "Approve application for: #{@pet_1.name}"
   end
   describe "If a shelter has approved applications for any of their pets" do
-    it "Show Page, I can not delete that shelter(there is no button visible for me to delete the shelter)" do
+    it "I can not delete that shelter from show page(there is no button visible for me to delete the shelter)" do
       visit "/shelters/#{@shelter_1.id}" # no delete button
       expect(page).to have_content(@shelter_1.name)
       within("#navbar-header") do
@@ -62,8 +62,8 @@ describe "As a visitor" do
         expect(page).to have_link('Delete Shelter')
       end
     end
-    
-    it "Index Page, I can not delete that shelter(there is no button visible for me to delete the shelter)" do
+
+    it "I can not delete that shelter from index page(there is no button visible for me to delete the shelter)" do
       visit "/shelters"
       within "#shelter-#{@shelter_1.id}-section" do
         expect(page).not_to have_link('Delete Shelter')
