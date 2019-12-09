@@ -62,10 +62,10 @@ describe "As a visitor" do
        expect(page).to have_link('Delete Pet')
      end
    end
-   
-   xit "there is no button visible for me to delete the pet on the show page" do
-     visit("/pets/#{@pet_1.id}")
-     expect(page).not_to have_link('Delete Pet')
-   end
+
+   # it "there is no button visible for me to delete the pet on the show page" do
+   #   visit("/pets/#{@pet_1.id}")
+   #   expect(page).not_to have_link('Delete Pet')
+   # end
   end
 end
