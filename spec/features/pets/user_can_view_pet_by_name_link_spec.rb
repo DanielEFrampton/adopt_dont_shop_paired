@@ -62,5 +62,15 @@ RSpec.describe "As a visitor", type: :feature do
 
       expect(current_path).to eq("/pets/#{@pet_1.id}")
     end
+
+    it "on the new application form that link takes me to that pet's show page" do
+      visit "/pets/#{@pet_1.id}"
+      click_on "Favorite This Pet"
+
+      visit "/applications/new"
+      click_link("#{@pet_1.name}")
+
+      expect(current_path).to eq("/pets/#{@pet_1.id}")
+    end
   end
 end
