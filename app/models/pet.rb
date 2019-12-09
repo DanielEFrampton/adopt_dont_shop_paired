@@ -10,6 +10,6 @@ class Pet < ApplicationRecord
   end
 
   def owner
-    Pet.joins(:applications).where("pet_applications.approved=true AND pets.id=#{id}").pluck('applications.name').first
+    Application.joins(:pets).where("pet_applications.approved=true AND pets.id=#{id}").first
   end
 end
