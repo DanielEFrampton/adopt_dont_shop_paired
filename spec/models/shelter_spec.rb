@@ -98,7 +98,13 @@ describe Shelter, type: :model do
       expect(@shelter_1.application_count).to eq(0)
       expect(@shelter_2.application_count).to eq(1)
       @application.pets << @pet_3
-      expect(@shelter_2.application_count).to eq(1)      
+      expect(@shelter_2.application_count).to eq(1)
+    end
+
+    it "can sort reviews based off a user requested order" do
+      expect(@shelter_1.sort_reviews('highest')).to eq([@review_1, @review_2])
+      expect(@shelter_1.sort_reviews('lowest')).to eq([@review_2, @review_1])
+      expect(@shelter_1.sort_reviews(nil)).to eq([@review_1, @review_2])
     end
   end
 end
