@@ -41,8 +41,7 @@ RSpec.describe 'As a visitor', type: :feature do
                                        phone_number: "2014239102",
                                        description: "nf wkfs. ekwj mqn wka?"
                                       })
-    @pet_application = PetApplication.create({pet_id: @pet_1.id, application_id: @application.id})
-    @pet_application = PetApplication.create({pet_id: @pet_2.id, application_id: @application.id})
+    @application.pets << [@pet_1, @pet_3]
     visit "/applications/#{@application.id}"
     click_link "Approve application for: #{@pet_1.name}"
   end
@@ -54,8 +53,8 @@ RSpec.describe 'As a visitor', type: :feature do
 
         within "#approved_pets" do
           expect(page).to have_link(@pet_1.name, href: "/pets/#{@pet_1.id}")
-          expect(page).to have_link(@pet_2.name, href: "/pets/#{@pet_2.id}")
-          expect(page).not_to have_link(@pet_3.name)
+          expect(page).not_to have_link(@pet_2.name) # not approved
+          expect(page).not_to have_link(@pet_3.name) # not applied for
         end
       end
     end
