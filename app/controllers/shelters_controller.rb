@@ -24,7 +24,7 @@ class SheltersController < ApplicationController
     if shelter.save
       redirect_to '/shelters'
     else
-      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params}"
+      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params(shelter_params)}"
       redirect_to '/shelters/new'
     end
   end
@@ -63,12 +63,5 @@ class SheltersController < ApplicationController
 
     def shelter_params
       params.permit(:name, :address, :city, :state, :zip)
-    end
-
-    def empty_params
-      shelter_params.to_h.reduce("") do |empty_params,(key, value)|
-        next empty_params if value != ""
-        empty_params.empty? ? empty_params += key.capitalize : empty_params += ', ' + key.capitalize
-      end
     end
 end
