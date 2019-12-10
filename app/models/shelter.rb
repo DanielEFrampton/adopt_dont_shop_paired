@@ -18,4 +18,14 @@ class Shelter < ApplicationRecord
   def application_count
     Shelter.where(id: id).joins(pets: :applications).distinct.count
   end
+
+  def sort_reviews(requested_order)
+    if requested_order == 'highest'
+      reviews.order('rating DESC, created_at DESC')
+    elsif requested_order == 'lowest'
+      reviews.order('rating, created_at')
+    else
+      reviews
+    end
+  end
 end
