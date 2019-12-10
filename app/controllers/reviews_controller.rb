@@ -37,6 +37,7 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
+    params.delete(:image_path) if params[:image_path].empty?
     params.permit(:title, :rating, :content, :image_path)
   end
 end
