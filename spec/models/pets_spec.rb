@@ -134,7 +134,6 @@ describe Pet, type: :model do
 
       it 'can return relation with name and id all approved-application pets' do
         # pet 3
-        expected_relation =
         expect(@pets.approved).to eq([@pet_3])
       end
     end
