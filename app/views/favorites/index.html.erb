@@ -9,18 +9,18 @@
 <main>
   <section id="applied_pets">
     <h3>All Applied-For Pets</h3>
-    <% @applied_pets.each do |applied_pet| %>
+    <% @pets.applied.each do |applied_pet| %>
       <p><%= link_to "#{applied_pet.name}", "/pets/#{applied_pet.id}" %></p>
     <% end %>
   </section>
   <section id="approved_pets">
     <h3>All Pets with Approved Applications</h3>
-    <% @approved_pets.each do |approved_pet| %>
+    <% @pets.approved.each do |approved_pet| %>
       <p><%= link_to "#{approved_pet.name}", "/pets/#{approved_pet.id}" %></p>
     <% end %>
   </section>
-  <% unless @favorited_pets.empty? %>
-    <% @favorited_pets.each do |favorite| %>
+  <% unless @pets.favorited(@favorites).empty? %>
+    <% @pets.favorited(@favorites).each do |favorite| %>
       <section id="favorite-<%= favorite.id %>">
         <h3>
           <%= link_to favorite.name, "/pets/#{favorite.id}" %>
