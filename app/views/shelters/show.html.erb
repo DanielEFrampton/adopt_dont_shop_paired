@@ -7,6 +7,8 @@
       <%= link_to 'Delete Shelter', "/shelters/#{@shelter.id}", method: :delete %>
     <% end %>
     <%= link_to 'Create New Review', "/shelters/#{@shelter.id}/reviews/new" %>
+    <%= link_to 'Sort by Highest Rating', "/shelters/#{@shelter.id}?sort_by=highest" %>
+    <%= link_to 'Sort by Lowest Rating', "/shelters/#{@shelter.id}?sort_by=lowest" %>
   </navbar>
 </header>
 
@@ -28,8 +30,7 @@
     </p>
   </section>
 
-
-  <% @shelter.reviews.each do |review| %>
+  <% @shelter.sort_reviews(params[:sort_by]).each do |review| %>
   <section id = "review-<%= review.id %>">
     <p>
       Title: <%= review.title %> <br/>
