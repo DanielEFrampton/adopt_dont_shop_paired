@@ -21,11 +21,14 @@ describe "As a visitor," do
       rating: 2,
       content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
 
+    long_time_ago = Time.new(2015, 1, 1)
+
     @review_3 = @shelter.reviews.create!(
       title: "yeti makes nice bottles",
       rating: 4,
       content: "As you read before this is not a test review",
-      image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
+      image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334",
+      created_at: long_time_ago)
 
     @review_4 = @shelter.reviews.create!(
       title: "Great Snake Place",
@@ -41,9 +44,9 @@ describe "As a visitor," do
       expect(page.body.index(@review_4.title)).to be < page.body.index(@review_1.title)
       expect(page.body.index(@review_4.title)).to be < page.body.index(@review_2.title)
       expect(page.body.index(@review_4.title)).to be < page.body.index(@review_3.title)
-      expect(page.body.index(@review_3.title)).to be < page.body.index(@review_2.title)
-      expect(page.body.index(@review_3.title)).to be < page.body.index(@review_1.title)
       expect(page.body.index(@review_1.title)).to be < page.body.index(@review_2.title)
+      expect(page.body.index(@review_1.title)).to be < page.body.index(@review_3.title)
+      expect(page.body.index(@review_3.title)).to be < page.body.index(@review_2.title)
 
     end
     it "I see additional links to sort their sort reviews by lowest rating, then by ascending date" do
@@ -55,9 +58,9 @@ describe "As a visitor," do
       expect(page.body.index(@review_2.title)).to be < page.body.index(@review_4.title)
       expect(page.body.index(@review_2.title)).to be < page.body.index(@review_3.title)
       expect(page.body.index(@review_2.title)).to be < page.body.index(@review_1.title)
-      expect(page.body.index(@review_1.title)).to be < page.body.index(@review_3.title)
-      expect(page.body.index(@review_1.title)).to be < page.body.index(@review_4.title)
+      expect(page.body.index(@review_3.title)).to be < page.body.index(@review_1.title)
       expect(page.body.index(@review_3.title)).to be < page.body.index(@review_4.title)
+      expect(page.body.index(@review_1.title)).to be < page.body.index(@review_4.title)
     end
   end
 end
