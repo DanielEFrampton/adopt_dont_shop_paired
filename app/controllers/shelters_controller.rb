@@ -1,7 +1,7 @@
 class SheltersController < ApplicationController
   def index
     if params[:sort_by] == "adoptable"
-      @shelters = Shelter.all.sort_by {|shelter| shelter.pets.where(adoptable: true).count}.reverse
+      @shelters = Shelter.by_most_adoptable
       @adoptable_order = "active_sort"
     elsif params[:sort_by] == "alphabet"
       @shelters = Shelter.order(:name)
