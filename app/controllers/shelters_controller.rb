@@ -47,16 +47,6 @@ class SheltersController < ApplicationController
 
   def pets
     @shelter = Shelter.find(params[:id])
-    if params[:adoptable] == "true"
-      @pets = @shelter.pets.where(adoptable: params[:adoptable])
-      @show_adoptable = "active_sort"
-    elsif params[:adoptable] == "false"
-      @pets = @shelter.pets.where(adoptable: params[:adoptable])
-      @show_pending = "active_sort"
-    else
-      @pets = @shelter.pets.order(adoptable: :desc)
-      @show_all = "active_sort"
-    end
   end
 
   private

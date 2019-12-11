@@ -13,7 +13,7 @@
 </header>
 
 <main>
-  <% @pets.each do |pet| %>
+  <% @shelter.sort_pets(params[:adoptable]).each do |pet| %>
     <section id="pet-<%= pet.id %>-section">
     <h3><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h3>
     <p>
