@@ -49,6 +49,13 @@ class SheltersController < ApplicationController
   def pets
     @shelter = Shelter.find(params[:id])
     @sort_option = params[:adoptable]
+    if @sort_option == 'true'
+      @show_adoptable = 'active_sort'
+    elsif @sort_option == 'false'
+      @show_pending = 'active_sort'
+    else
+      @show_all = 'active_sort'
+    end
   end
 
   private
