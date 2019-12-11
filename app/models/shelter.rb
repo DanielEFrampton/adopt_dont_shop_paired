@@ -26,4 +26,10 @@ class Shelter < ApplicationRecord
     .limit(3)
     .group('shelters.id')
   end
+
+  def self.by_most_adoptable
+    joins(:pets)
+    .order('count(CASE pets.adoptable WHEN true THEN 1 ELSE null END) DESC')
+    .group('shelters.id')
+  end
 end
