@@ -168,12 +168,78 @@ describe Shelter, type: :model do
         title: "Small store front",
         rating: 2,
         content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
+
+      @pet_1 = @shelter_1.pets.create({
+                               name: "Bill",
+                               approx_age: 3,
+                               sex: "male",
+                               image_path: "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg",
+                               description: "Very canine",
+                               adoptable: true
+                             })
+      @pet_2 = @shelter_1.pets.create({
+                               name: "Phil",
+                               approx_age: 1,
+                               sex: "male",
+                               image_path: "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg",
+                               description: "Very canine",
+                               adoptable: true
+                             })
+      @pet_3 = @shelter_1.pets.create({
+                               name: "Philippa",
+                               approx_age: 1,
+                               sex: "male",
+                               image_path: "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg",
+                               description: "Very canine",
+                               adoptable: true
+                             })
+
+      @pet_4 = @shelter_2.pets.create({
+                               name: "Phil",
+                               approx_age: 1,
+                               sex: "male",
+                               image_path: "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg",
+                               description: "Very canine",
+                               adoptable: true
+                             })
+      @pet_5 = @shelter_2.pets.create({
+                               name: "Philippa",
+                               approx_age: 1,
+                               sex: "male",
+                               image_path: "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg",
+                               description: "Very canine",
+                               adoptable: true
+                             })
+
+      @pet_6 = @shelter_3.pets.create({
+                               name: "Phil",
+                               approx_age: 1,
+                               sex: "male",
+                               image_path: "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg",
+                               description: "Very canine",
+                               adoptable: true
+                             })
+      @pet_7 = @shelter_3.pets.create({
+                               name: "Philippa",
+                               approx_age: 1,
+                               sex: "male",
+                               image_path: "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg",
+                               description: "Very canine",
+                               adoptable: true
+                             })
     end
 
     describe 'top_rated' do
       it 'can return top three highest-rated shelters' do
         expected_relation = Shelter.find([@shelter_1.id, @shelter_2.id, @shelter_3.id])
         expect(Shelter.top_rated).to eq(expected_relation)
+      end
+    end
+
+    describe 'by_most_adoptable' do
+      it 'can return shelters ordered by number adoptable pets descending' do
+        expected_relation = Shelter.find([@shelter_3.id, @shelter_1.id, @shelter_2.id])
+        expect(Shelter.by_most_adoptable).to eq(expected_relation)
       end
     end
   end
