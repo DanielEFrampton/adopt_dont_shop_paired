@@ -21,8 +21,7 @@ class Pet < ApplicationRecord
     adoptable ? "adoptable" : "pending"
   end
 
-  # REFACTOR to remove call to Application by going through self.pet_applications
   def owner
-    Application.joins(:pets).where("pet_applications.approved=true AND pets.id=#{id}").first
+    pet_applications.where(approved: true).first.application
   end
 end

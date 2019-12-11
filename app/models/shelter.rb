@@ -7,8 +7,8 @@ class Shelter < ApplicationRecord
     pets.count
   end
 
-  def no_pending? # needs heavy refactor, ruby doc site is down (~12/8/19 7am)
-    pets.all? { |pet| pet.adoptable }
+  def no_pending?
+    pets.where(adoptable: false).none?
   end
 
   def average_rating
@@ -16,7 +16,9 @@ class Shelter < ApplicationRecord
   end
 
   def application_count
-    Shelter.where(id: id).joins(pets: :applications).distinct.count
+    pets.joins(:applications)
+        .select(:application_id)
+        .distinct.count
   end
 
   def sort_reviews(requested_order)
