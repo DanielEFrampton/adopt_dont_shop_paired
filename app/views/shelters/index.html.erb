@@ -16,7 +16,7 @@
   <aside id="top-shelters">
     <h3>Top 3 Highest-Rated Shelters</h3>
     <% @shelters.top_rated.each do |shelter| %>
-      <p><%= shelter.name %> (Average Rating: <%= shelter.average_rating %>)</p>
+      <p><%= link_to shelter.name, "/shelters/#{shelter.id}" %> (Average Rating: <%= shelter.average_rating %>)</p>
     <% end %>
   </aside>
   <% @shelters.each do |shelter| %>
