@@ -74,7 +74,7 @@ RSpec.describe 'As a visitor', type: :feature do
     it "I see section with top 3 highest (average) rated shelters" do
       visit '/shelters'
 
-      within "#top_shelters" do
+      within "#top-shelters" do
         expect(page).to have_content("Top 3 Highest-Rated Shelters")
         # shelter 1 (3), shelter 2 (2.5), shelter 3 (2), shelter 4 (1.5)
         expect(page).to have_link("#{@shelter_1.name} (Average Rating: #{@shelter_1.average_rating})", href: "/shelters/#{@shelter_1}")
