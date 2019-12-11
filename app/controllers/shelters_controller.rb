@@ -14,6 +14,7 @@ class SheltersController < ApplicationController
 
   def show
     @shelter = Shelter.find(params[:id])
+    @sort_option = params[:sort_by]
   end
 
   def new
@@ -47,6 +48,7 @@ class SheltersController < ApplicationController
 
   def pets
     @shelter = Shelter.find(params[:id])
+    @sort_option = params[:adoptable]
   end
 
   private

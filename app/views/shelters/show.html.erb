@@ -30,7 +30,7 @@
     </p>
   </section>
 
-  <% @shelter.sort_reviews(params[:sort_by]).each do |review| %>
+  <% @shelter.sort_reviews(@sort_option).each do |review| %>
   <section id = "review-<%= review.id %>">
     <p>
       Title: <%= review.title %> <br/>
