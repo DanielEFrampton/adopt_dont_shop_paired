@@ -59,6 +59,7 @@ describe Shelter, type: :model do
         title: "Small store front",
         rating: 2,
         content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
+
       @review_3 = @shelter_2.reviews.create!(
         title: "Great Location",
         rating: 10,
@@ -77,6 +78,30 @@ describe Shelter, type: :model do
         phone_number: "2014239102",
         description: "nf wkfs. ekwj mqn wka?")
       @application.pets << [@pet_2]
+
+      @shelter_3 = Shelter.create(name: "Yeti Jimmy",
+                                 address: "45 Dumpster Fire Alley",
+                                 city: "Faketown",
+                                 state: "FK",
+                                 zip: "55555")
+
+      @review_10 = @shelter_3.reviews.create!(
+        title: "Great Location",
+        rating: 4,
+        content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
+        image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
+      @review_11 = @shelter_3.reviews.create!(
+        title: "Small store front",
+        rating: 2,
+        content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
+
+      long_time_ago = Time.new(2015, 1, 1)
+
+      @review_12 = @shelter_3.reviews.create!(
+        title: "Big Store Texas",
+        rating: 2,
+        content: "texas likes to keep em snakes",
+        created_at: long_time_ago)
     end
 
     it "can return pet count for individual shelter" do
@@ -99,6 +124,12 @@ describe Shelter, type: :model do
       expect(@shelter_2.application_count).to eq(1)
       @application.pets << @pet_3
       expect(@shelter_2.application_count).to eq(1)
+    end
+    
+    it "can sort reviews based off a user requested order" do
+      expect(@shelter_3.sort_reviews('highest')).to eq([@review_10, @review_11, @review_12])
+      expect(@shelter_3.sort_reviews('lowest')).to eq([@review_12, @review_11, @review_10])
+      expect(@shelter_3.sort_reviews(nil)).to eq([@review_10, @review_11, @review_12])
     end
   end
 

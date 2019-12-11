@@ -1,7 +1,6 @@
 class FavoritesController < ApplicationController
   def index
-    @favorited_pets = Pet.find(@favorites.ids)
-    @applied_pets = Pet.select(:name, :id).joins(:pet_applications).distinct
+    @pets = Pet.all
   end
 
   def create

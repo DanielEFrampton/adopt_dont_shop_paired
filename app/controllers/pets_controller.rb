@@ -26,7 +26,7 @@ class PetsController < ApplicationController
     if pet.save
       redirect_to "/shelters/#{shelter.id}/pets"
     else
-      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params}"
+      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params(pet_params)}"
       redirect_to "/shelters/#{shelter.id}/pets/new"
     end
   end
@@ -41,7 +41,7 @@ class PetsController < ApplicationController
     if pet.save
       redirect_to "/pets/#{pet.id}"
     else
-      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params}"
+      flash[:incomplete] = "You attempted to submit the form without completing required field(s): #{empty_params(pet_params)}"
       redirect_to "/pets/#{pet.id}/edit"
     end
   end
@@ -77,12 +77,5 @@ class PetsController < ApplicationController
 
   def pet_params
     params.permit(:name, :approx_age, :sex, :image_path, :description)
-  end
-
-  def empty_params
-    pet_params.to_h.reduce("") do |empty_params,(key, value)|
-      next empty_params if value != ""
-      empty_params.empty? ? empty_params += key.capitalize : empty_params += ', ' + key.capitalize
-    end
   end
 end

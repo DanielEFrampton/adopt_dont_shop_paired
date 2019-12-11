@@ -32,4 +32,14 @@ class Shelter < ApplicationRecord
     .order('count(CASE pets.adoptable WHEN true THEN 1 ELSE null END) DESC')
     .group('shelters.id')
   end
+  
+  def sort_reviews(requested_order)
+    if requested_order == 'highest'
+      reviews.order('rating DESC, created_at DESC')
+    elsif requested_order == 'lowest'
+      reviews.order('rating, created_at')
+    else
+      reviews
+    end
+  end
 end

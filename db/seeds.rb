@@ -10,14 +10,14 @@ Review.destroy_all
 Shelter.destroy_all
 
 shelter_1 = Shelter.create(
-  name: "Ridiculous Test Name",
+  name: "All Puppies All the Time",
   address: "124 Fake Ln.",
   city: "Faketown",
   state: "FK",
   zip: "55555")
 
 shelter_2 = Shelter.create(
-  name: "Even Worse Test Name",
+  name: "Your Best Dog Now!",
   address: "45 Dumpster Fire Alley",
   city: "Faketown",
   state: "FK",
