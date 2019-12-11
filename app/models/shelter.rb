@@ -28,4 +28,14 @@ class Shelter < ApplicationRecord
       reviews
     end
   end
+
+  def sort_pets(requested_order)
+    if requested_order == 'true'
+      pets.where(adoptable: true)
+    elsif requested_order == 'false'
+      pets.where(adoptable: false)
+    else
+      pets.order(adoptable: :desc)
+    end
+  end
 end
