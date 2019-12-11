@@ -49,22 +49,22 @@ RSpec.describe 'As a visitor', type: :feature do
       rating: 1,
       content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
 
-    @review_5 = @shelter_2.reviews.create!(
+    @review_5 = @shelter_3.reviews.create!(
       title: "Great Location",
       rating: 3,
       content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
       image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
-    @review_6 = @shelter_2.reviews.create!(
+    @review_6 = @shelter_3.reviews.create!(
       title: "Small store front",
       rating: 1,
       content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
 
-    @review_7 = @shelter_2.reviews.create!(
+    @review_7 = @shelter_4.reviews.create!(
       title: "Great Location",
       rating: 1,
       content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
       image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
-    @review_8 = @shelter_2.reviews.create!(
+    @review_8 = @shelter_4.reviews.create!(
       title: "Small store front",
       rating: 2,
       content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
@@ -77,9 +77,12 @@ RSpec.describe 'As a visitor', type: :feature do
       within "#top-shelters" do
         expect(page).to have_content("Top 3 Highest-Rated Shelters")
         # shelter 1 (3), shelter 2 (2.5), shelter 3 (2), shelter 4 (1.5)
-        expect(page).to have_link("#{@shelter_1.name} (Average Rating: #{@shelter_1.average_rating})", href: "/shelters/#{@shelter_1}")
-        expect(page).to have_link("#{@shelter_1.name} (Average Rating: #{@shelter_2.average_rating})", href: "/shelters/#{@shelter_2}")
-        expect(page).to have_link("#{@shelter_1.name} (Average Rating: #{@shelter_3.average_rating})", href: "/shelters/#{@shelter_3}")
+        expect(page).to have_content("#{@shelter_1.name} (Average Rating: #{@shelter_1.average_rating})")
+        expect(page).to have_content("#{@shelter_2.name} (Average Rating: #{@shelter_2.average_rating})")
+        expect(page).to have_content("#{@shelter_3.name} (Average Rating: #{@shelter_3.average_rating})")
+        expect(page).to have_link("#{@shelter_1.name}", href: "/shelters/#{@shelter_1.id}")
+        expect(page).to have_link("#{@shelter_2.name}", href: "/shelters/#{@shelter_2.id}")
+        expect(page).to have_link("#{@shelter_3.name}", href: "/shelters/#{@shelter_3.id}")
       end
     end
   end

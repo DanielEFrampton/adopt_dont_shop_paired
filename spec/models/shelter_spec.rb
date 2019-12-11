@@ -149,22 +149,22 @@ describe Shelter, type: :model do
         rating: 1,
         content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
 
-      @review_5 = @shelter_2.reviews.create!(
+      @review_5 = @shelter_3.reviews.create!(
         title: "Great Location",
         rating: 3,
         content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
         image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
-      @review_6 = @shelter_2.reviews.create!(
+      @review_6 = @shelter_3.reviews.create!(
         title: "Small store front",
         rating: 1,
         content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
 
-      @review_7 = @shelter_2.reviews.create!(
+      @review_7 = @shelter_4.reviews.create!(
         title: "Great Location",
         rating: 1,
         content: "3n22 ewlrjwe kej wrkjw nwke nqln qn onrkew 3k iw qm",
         image_path: "https://www.shutterstock.com/image-vector/location-pin-700686334")
-      @review_8 = @shelter_2.reviews.create!(
+      @review_8 = @shelter_4.reviews.create!(
         title: "Small store front",
         rating: 2,
         content: "3n2 ww q2 ewlrjwe ke wrkw qw jw nwke 23 2nqln qn onrkew 3k iw dqqm")
