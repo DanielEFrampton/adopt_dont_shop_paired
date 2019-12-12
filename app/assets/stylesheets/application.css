@@ -14,12 +14,26 @@
  *= require_self
  */
 
+html, body, #body-block {
+  height: 100%;
+}
+
  body {
    background-color: lightblue;
    font-family: verdana;
    font-size: 1em;
    margin: 0px;
- }
+  }
+
+  #body-block {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+  }
+
+  #top-block {
+   flex-grow: 1;
+  }
 
  header {
    display: flex;
@@ -115,6 +129,14 @@
    margin-right: auto;
  }
 
+ section.wide {
+   padding: 0;
+   grid-column-start: span 2;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }
+
  form label {
    display: inline-block;
    width: 35%;
@@ -140,4 +162,15 @@
    flex-direction: column;
    justify-content: center;
    text-indent: 2em;
+ }
+
+ footer {
+   margin: auto;
+   width: 90%;
+   border-top-style: solid;
+   border-top-color: black;
+   border-top-width: 1px;
+   display: flex;
+   justify-content: center;
+   font-size: 0.8em;
  }
