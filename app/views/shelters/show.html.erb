@@ -13,25 +13,30 @@
 </header>
 
 <main>
-  <section>
-    <h3>Shelter Details</h3>
-    <p>
-      Name: <%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %><br/>
-      Address: <%= @shelter.address %><br/>
-      City: <%= @shelter.city %><br/>
-      State: <%= @shelter.state %><br/>
-      Zip: <%= @shelter.zip %><br/>
-    </p>
-    <h3>Shelter Statistics</h3>
-    <p>
-      Number of Pets Here: <%= @shelter.pet_count %><br/>
-      Average Review Rating: <%= @shelter.average_rating ? @shelter.average_rating : "(no reviews)" %><br/>
-      Applications On File: <%= @shelter.application_count %><br/>
-    </p>
+  <section class=wide>
+    <section>
+      <h3>Shelter Details</h3>
+      <p>
+        Name: <%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %><br/>
+        Address: <%= @shelter.address %><br/>
+        City: <%= @shelter.city %><br/>
+        State: <%= @shelter.state %><br/>
+        Zip: <%= @shelter.zip %><br/>
+      </p>
+    </section>
+    <section>
+      <h3>Shelter Statistics</h3>
+      <p>
+        Number of Pets Here: <%= @shelter.pet_count %><br/>
+        Average Review Rating: <%= @shelter.average_rating ? @shelter.average_rating : "(no reviews)" %><br/>
+        Applications On File: <%= @shelter.application_count %><br/>
+      </p>
+    </section>
   </section>
 
-  <% @shelter.sort_reviews(@sort_option).each do |review| %>
+  <% @shelter.sort_reviews(@sort_option).each_with_index do |review, index| %>
   <section id = "review-<%= review.id %>">
+    <h3>Review #<%= index + 1 %></h3>
     <p>
       Title: <%= review.title %> <br/>
       Rating: <%= review.rating%> <br/>

@@ -13,12 +13,14 @@
 </header>
 
 <main>
-  <aside id="top-shelters">
+  <section class="wide">
+    <section id="top-shelters">
     <h3>Top 3 Highest-Rated Shelters</h3>
     <% @shelters.top_rated.each do |shelter| %>
       <p><%= link_to shelter.name, "/shelters/#{shelter.id}" %> (Average Rating: <%= shelter.average_rating %>)</p>
     <% end %>
-  </aside>
+    </section>
+  </section>
   <% @shelters.each do |shelter| %>
     <section id="shelter-<%= shelter.id %>-section">
       <h3><%= link_to "#{shelter.name}", "/shelters/#{shelter.id}" %></h3>

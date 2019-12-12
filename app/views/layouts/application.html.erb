@@ -9,20 +9,30 @@
   </head>
 
   <body>
-    <header id ="site-header">
-      <h1>Adopt Don't Shop</h1>
-      <navbar>
-        <%= link_to "Favorites (#{@favorites.total_favorites})", '/favorites' %>
-        <%= link_to "Home", "/" %>
-        <%= link_to "Pet Index", "/pets" %>
-        <%= link_to "Shelter Index", "/shelters" %>
-      </navbar>
-    </header>
-    <header id='flash-header'>
-      <% flash.each do |type, message| %>
-       <p><%= message %></p>
-      <% end %>
-    </header>
-    <%= yield %>
+    <div id="body-block">
+      <div id="top-block">
+        <header id ="site-header">
+          <h1>Adopt Don't Shop</h1>
+          <navbar>
+            <%= link_to "Favorites (#{@favorites.total_favorites})", '/favorites' %>
+            <%= link_to "Home", "/" %>
+            <%= link_to "Pet Index", "/pets" %>
+            <%= link_to "Shelter Index", "/shelters" %>
+          </navbar>
+        </header>
+        <header id='flash-header'>
+          <% flash.each do |type, message| %>
+           <p><%= message %></p>
+          <% end %>
+        </header>
+        <%= yield %>
+      </div>
+      <footer>
+        <p>
+          Developed by <%= link_to 'Ryan Allen', 'https://github.com/rallen20' %> and <%= link_to 'Daniel Frampton', 'https://github.com/DanielEFrampton' %> for <%= link_to 'Turing School of Software & Design', 'http://turing.io' %> |
+          <%= link_to 'Github Repo', 'https://github.com/DanielEFrampton/adopt_dont_shop_paired' %>
+        </p>
+      </footer>
+    </div>
   </body>
 </html>
